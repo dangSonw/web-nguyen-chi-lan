@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>/music - Nguyễn Chi Lan</title>
+
+  <!-- Google Fonts: Libre Caslon Text & Pinyon Script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       /MUSIC PAGE - RESPONSIVE & FLUID DESIGN (Figma 1440px Scale 0.75)
+       ========================================================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: #FDF6E6;
+      color: #000000;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* Fluid Canvas Container */
+    .viewport-canvas {
+      position: relative;
+      width: 100%;
+      max-width: 1440px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background-color: #FDF6E6;
+      padding: 30.11px 75px 56.2px 75px;
+      display: flex;
+    }
+
+    /* --------------------------------------------------------------------------
+       SIDEBAR NAVIGATION
+       -------------------------------------------------------------------------- */
+    .sidebar-nav {
+      width: 180px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5.25px;
+      margin-top: 23px;
+    }
+
+    .nav-link {
+      display: block;
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 700;
+      font-size: 15.75px; /* 21 * 0.75 */
+      line-height: 15.75px;
+      color: #BEBEBE;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: #585858;
+      transform: translateX(2px);
+    }
+
+    .nav-link.active {
+      color: #585858;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* --------------------------------------------------------------------------
+       MAIN CONTENT COLUMN
+       -------------------------------------------------------------------------- */
+    .main-content {
+      flex: 1 1 0;
+      min-width: 0;
+      width: 100%;
+      max-width: 1072.5px;
+      margin-left: clamp(20px, 2.5vw, 37.5px);
+    }
+
+    /* Breadcrumb /music */
+    .breadcrumb {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: 15px; /* 20 * 0.75 */
+      line-height: 21px; /* 28 * 0.75 */
+      color: #9E9E9E;
+      margin-bottom: 22.85px; /* (110.62 - 40.15 - 28) * 0.75 = 31.85, balanced */
+      user-select: none;
+    }
+
+    /* Title: Music. with artistic drop-cap initial */
+    .page-title {
+      display: flex;
+      align-items: baseline;
+      color: #B97278;
+      margin-bottom: 16.35px; /* (190.42 - 110.62 - 58) * 0.75 */
+      user-select: none;
+    }
+
+    .title-initial {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 97.5px; /* 130 * 0.75 */
+      line-height: 0.75;
+      font-weight: 400;
+      margin-right: 3px;
+    }
+
+    .title-rest {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 500;
+      font-size: 45px; /* 60 * 0.75 */
+      line-height: 43.5px;
+    }
+
+    /* Intro description */
+    .intro-text {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: 13.5px; /* 18 * 0.75 */
+      line-height: 16.5px; /* 22 * 0.75 */
+      color: #585858;
+      width: 100%;
+      max-width: 1072.5px;
+      margin-bottom: 49.27px; /* (300.12 - 190.42 - 44) * 0.75 */
+    }
+
+    /* --------------------------------------------------------------------------
+       SECTION BLOCKS
+       -------------------------------------------------------------------------- */
+    .music-section {
+      width: 100%;
+      max-width: 1072.5px;
+    }
+
+    .section-title {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 600;
+      font-size: 18px; /* 24 * 0.75 */
+      line-height: 18px;
+      color: #585858;
+      margin-bottom: 11.38px; /* (339.29 - 300.12 - 24) * 0.75 */
+    }
+
+    .section-desc {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: 13.5px; /* 18 * 0.75 */
+      line-height: 16.5px; /* 22 * 0.75 */
+      color: #585858;
+      width: 100%;
+      max-width: 420px; /* 560 * 0.75 */
+    }
+
+    /* Section 1: Piano */
+    #piano .section-desc {
+      margin-bottom: 16.36px; /* (449.10 - 339.29 - 88) * 0.75 */
+    }
+
+    /* Section 2: Traditional */
+    #traditional-instruments {
+      margin-top: 41.53px; /* (1778.97 - 1701.60 - 22) * 0.75 */
+    }
+
+    #traditional-instruments .section-desc {
+      margin-bottom: 29.77px; /* (1945.84 - 1818.15 - 88) * 0.75 */
+    }
+
+    /* Section 3: Concert */
+    #viet-nam-tinh-hoa {
+      margin-top: 70.90px; /* (2950.99 - 2833.98 - 22.48) * 0.75 */
+    }
+
+    #viet-nam-tinh-hoa .section-desc {
+      margin-bottom: 37.21px; /* (3149.78 - 2990.17 - 110) * 0.75 */
+    }
+
+    /* --------------------------------------------------------------------------
+       MEDIA LAYOUTS & GRIDS (Exact Figma Dimensions & Fluid Grid)
+       -------------------------------------------------------------------------- */
+    /* Row 1: Piano Photos (2 items) */
+    .row-piano-photos {
+      display: grid;
+      grid-template-columns: 781fr 638.8fr;
+      gap: clamp(6px, 0.8vw, 10px);
+      width: 100%;
+      max-width: 1072.5px;
+      margin-bottom: 7.58px;
+    }
+
+    .row-piano-photos .photo-1 {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 781 / 425.9;
+      object-fit: cover;
+      display: block;
+      min-width: 0;
+    }
+
+    .row-piano-photos .photo-2 {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 638.8 / 425.9;
+      object-fit: cover;
+      display: block;
+      min-width: 0;
+    }
+
+    /* Full width video (Piano video) */
+    .video-piano-wrapper {
+      width: 100%;
+      max-width: 1072.5px;
+    }
+
+    .video-piano-wrapper .video-box {
+      width: 100%;
+      max-width: 1072.5px;
+      aspect-ratio: 1432 / 802.9;
+      height: auto;
+    }
+
+    /* Row 2: Traditional Photos (2 items) */
+    .row-trad-photos {
+      display: grid;
+      grid-template-columns: 723.9fr 693.1fr;
+      gap: clamp(8px, 0.9vw, 13px);
+      width: 100%;
+      max-width: 1072.5px;
+      margin-bottom: 9.30px;
+    }
+
+    .row-trad-photos .photo-1 {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 723.9 / 472.4;
+      object-fit: cover;
+      display: block;
+      min-width: 0;
+    }
+
+    .row-trad-photos .photo-2 {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 693.1 / 472.4;
+      object-fit: cover;
+      display: block;
+      min-width: 0;
+    }
+
+    /* Row 2: Traditional Videos (2 items) */
+    .row-trad-videos {
+      display: grid;
+      grid-template-columns: 723.9fr 693.1fr;
+      gap: clamp(8px, 0.9vw, 13px);
+      width: 100%;
+      max-width: 1072.5px;
+    }
+
+    .row-trad-videos .video-col-1,
+    .row-trad-videos .video-col-2 {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .row-trad-videos .video-box {
+      width: 100%;
+      aspect-ratio: 723.9 / 390.9;
+      height: auto;
+    }
+
+    /* Row 3: Concert Photos (3 items - Exact Equal Dimensions in Figma) */
+    .row-concert-photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(6px, 0.75vw, 10.5px);
+      width: 100%;
+      max-width: 1072.5px;
+      margin-bottom: 10px;
+    }
+
+    .row-concert-photos .photo-concert {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 469.7 / 313.2;
+      object-fit: cover;
+      display: block;
+      min-width: 0;
+    }
+
+    /* Row 3: Concert Videos (2 items) */
+    .row-concert-videos {
+      display: grid;
+      grid-template-columns: 741.6fr 678.2fr;
+      gap: clamp(8px, 0.9vw, 12px);
+      width: 100%;
+      max-width: 1072.5px;
+    }
+
+    .row-concert-videos .video-col-1,
+    .row-concert-videos .video-col-2 {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .row-concert-videos .video-box {
+      width: 100%;
+      aspect-ratio: 741.6 / 386.2;
+      height: auto;
+    }
+
+    /* Video Box & Buttons */
+    .video-box {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      background-color: #000000;
+    }
+
+    .video-poster {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.3s ease, transform 0.4s ease;
+    }
+
+    .video-box:hover .video-poster {
+      filter: brightness(0.92);
+      transform: scale(1.015);
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .video-box:hover .play-button {
+      transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    .play-icon-large {
+      width: 51.18px;
+      height: 59.10px;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+    }
+
+    .play-icon-small, .play-icon-medium {
+      width: 38px;
+      height: 44px;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+    }
+
+    .video-caption {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16.5px;
+      color: #CD6E49;
+      text-align: center;
+      margin-top: 7.50px;
+    }
+
+    .video-iframe-holder {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* --------------------------------------------------------------------------
+       RESPONSIVE DESIGN (PRIORITIZING RESIZING FIRST)
+       -------------------------------------------------------------------------- */
+    @media (max-width: 880px) {
+      .viewport-canvas {
+        flex-direction: column;
+        padding: 24px 20px 48px;
+      }
+
+      .sidebar-nav {
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 24px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .section-desc {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .row-concert-photos {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .row-piano-photos {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .row-trad-photos {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .row-trad-videos {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .row-concert-videos {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-canvas">
+
+    <!-- ======================================================================
+         1. SIDEBAR NAVIGATION
+         ====================================================================== -->
+    <nav class="sidebar-nav" aria-label="Main Navigation">
+      <a href="../index.html" class="nav-link">/homepage</a>
+      <a href="../photography/index.html" class="nav-link">/photography</a>
+      <a href="../filmmaking/index.html" class="nav-link">/filmaking</a>
+      <a href="index.html" class="nav-link active" aria-current="page">/music</a>
+      <a href="../dance-performance/index.html" class="nav-link">/dance&amp;performance</a>
+      <a href="../art/index.html" class="nav-link">/art</a>
+      <a href="../community/index.html" class="nav-link">/community</a>
+    </nav>
+
+    <!-- ======================================================================
+         2. MAIN CONTENT
+         ====================================================================== -->
+    <main class="main-content">
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">/music</div>
+
+      <!-- Page Title -->
+      <h1 class="page-title">
+        <span class="title-initial">M</span><span class="title-rest">usic.</span>
+      </h1>
+
+      <!-- Intro Paragraph -->
+      <p class="intro-text">
+        My musical journey began with the piano in the 2nd grade, followed by traditional instruments in the 6th. That early curiosity sparked a lifelong exploration, leading me to pick up new instruments along the way. Today, I play 7 instruments with varying degrees of expertise.
+      </p>
+
+      <!-- --------------------------------------------------------------------
+           SECTION 1: Piano
+           -------------------------------------------------------------------- -->
+      <section class="music-section" id="piano">
+        <h2 class="section-title">Piano</h2>
+        <p class="section-desc">
+          My musical journey began with the piano in the 2nd grade, establishing a foundational discipline and love for melody. Over the years, I evolved from a little girl who hated going to lessons to an absolute music lover.
+        </p>
+
+        <!-- Piano Photos Row -->
+        <div class="row-piano-photos">
+          <img src="../assets/music/piano_1.jpg" alt="Chi Lan playing piano" class="photo-1">
+          <img src="../assets/music/piano_2.jpg" alt="Piano recital performance" class="photo-2">
+        </div>
+
+        <!-- Video 1 (Full width): Chopin -->
+        <div class="video-piano-wrapper">
+          <div class="video-box" data-youtube-id="" onclick="playVideo(this)" title="Click to play video">
+            <img src="../assets/music/video_piano.jpg" alt="Chopin - Nocturne in C sharp minor preview" class="video-poster">
+            <div class="play-button">
+              <svg class="play-icon-large" viewBox="0 0 52 60" fill="none">
+                <path d="M51.1826 29.55L0.000241357 59.1002L0.000243941 -0.000110956L51.1826 29.55Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div class="video-caption">Chopin - Nocturne in C sharp minor</div>
+        </div>
+      </section>
+
+      <!-- --------------------------------------------------------------------
+           SECTION 2: Traditional Instruments
+           -------------------------------------------------------------------- -->
+      <section class="music-section" id="traditional-instruments">
+        <h2 class="section-title">Traditional Instruments</h2>
+        <p class="section-desc">
+          Expanding into traditional instruments in the 6th grade opened up a deeply resonant cultural dialogue. This exploration grew beyond a casual interest into a profound appreciation for heritage.
+        </p>
+
+        <!-- Traditional Photos Row -->
+        <div class="row-trad-photos">
+          <img src="../assets/music/trad_1.jpg" alt="Traditional instrument performance 1" class="photo-1">
+          <img src="../assets/music/trad_2.jpg" alt="Traditional instrument performance 2" class="photo-2">
+        </div>
+
+        <!-- Traditional Videos Row -->
+        <div class="row-trad-videos">
+          <!-- Video 2: Co Gai Vot Chong -->
+          <div class="video-col-1">
+            <div class="video-box" data-youtube-id="" onclick="playVideo(this)" title="Click to play video">
+              <img src="../assets/music/video_trad_1.jpg" alt="Performance “Cô Gái Vót Chông”" class="video-poster">
+              <div class="play-button">
+                <svg class="play-icon-small" viewBox="0 0 52 60" fill="none">
+                  <path d="M51.1826 29.55L0.000241357 59.1002L0.000243941 -0.000110956L51.1826 29.55Z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="video-caption">Performance “Cô Gái Vót Chông” | Traditional Vietnamese T’rung</div>
+          </div>
+
+          <!-- Video 3: Hoi tho Tay Nguyen -->
+          <div class="video-col-2">
+            <div class="video-box" data-youtube-id="" onclick="playVideo(this)" title="Click to play video">
+              <img src="../assets/music/video_trad_2.jpg" alt="Performance “Hoi tho Tay Nguyen”" class="video-poster">
+              <div class="play-button">
+                <svg class="play-icon-small" viewBox="0 0 52 60" fill="none">
+                  <path d="M51.1826 29.55L0.000241357 59.1002L0.000243941 -0.000110956L51.1826 29.55Z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="video-caption">Performance “Hoi tho Tay Nguyen” | Traditional Vietnamese Bass T’rung</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- --------------------------------------------------------------------
+           SECTION 3: Viet Nam Tinh Hoa Concert
+           -------------------------------------------------------------------- -->
+      <section class="music-section" id="viet-nam-tinh-hoa">
+        <h2 class="section-title">Viet Nam Tinh Hoa Concert</h2>
+        <p class="section-desc">
+          Bridging classical heritage with contemporary energy. It was the very first time I tried playing a modern drumset. Performing at the Vietnam Tinh Hoa Concert marked my debut on a modern drum set, where I played piano, drums, and T'rung (a Vietnamese tradditional instrument).
+        </p>
+
+        <!-- Concert Photos Row (3 across) -->
+        <div class="row-concert-photos">
+          <img src="../assets/music/concert_1.jpg" alt="Viet Nam Tinh Hoa Concert photo 1" class="photo-concert">
+          <img src="../assets/music/concert_2.jpg" alt="Viet Nam Tinh Hoa Concert photo 2" class="photo-concert">
+          <img src="../assets/music/concert_3.jpg" alt="Viet Nam Tinh Hoa Concert photo 3" class="photo-concert">
+        </div>
+
+        <!-- Concert Videos Row (2 across) -->
+        <div class="row-concert-videos">
+          <!-- Video 4: Modern Drums -->
+          <div class="video-col-1">
+            <div class="video-box" data-youtube-id="" onclick="playVideo(this)" title="Click to play video">
+              <img src="../assets/music/video_concert_1.jpg" alt="Performance “Hoa Thom Buom Luon” preview" class="video-poster">
+              <div class="play-button">
+                <svg class="play-icon-medium" viewBox="0 0 52 60" fill="none">
+                  <path d="M51.1826 29.55L0.000241357 59.1002L0.000243941 -0.000110956L51.1826 29.55Z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="video-caption">Performance “Hoa Thom Buom Luon” | Impromptu Modern Drums</div>
+          </div>
+
+          <!-- Video 5: Traditional Drums -->
+          <div class="video-col-2">
+            <div class="video-box" data-youtube-id="" onclick="playVideo(this)" title="Click to play video">
+              <img src="../assets/music/video_concert_2.jpg" alt="Perfomance “Tinh Hoa Viet Nam” preview" class="video-poster">
+              <div class="play-button">
+                <svg class="play-icon-medium" viewBox="0 0 52 60" fill="none">
+                  <path d="M51.1826 29.55L0.000241357 59.1002L0.000243941 -0.000110956L51.1826 29.55Z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="video-caption">Perfomance “Tinh Hoa Viet Nam” | Traditional Vietnamese Drums</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       3. VIDEO EMBED HELPER SCRIPT
+       ======================================================================== -->
+  <script>
+    /**
+     * Handles clicking on video container.
+     * If 'data-youtube-id' is set on .video-box, replaces thumbnail with responsive YouTube embed.
+     * Example: data-youtube-id="dQw4w9WgXcQ"
+     */
+    function playVideo(container) {
+      const ytid = container.getAttribute('data-youtube-id');
+      if (ytid && ytid.trim() !== '') {
+        container.innerHTML = `
+          <iframe 
+            class="video-iframe-holder" 
+            src="https://www.youtube.com/embed/${encodeURIComponent(ytid)}?autoplay=1&rel=0" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        `;
+        container.onclick = null;
+        container.style.cursor = 'default';
+      }
+    }
+  </script>
+
+</body>
+</html>
+

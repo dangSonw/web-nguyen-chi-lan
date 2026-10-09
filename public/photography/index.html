@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>/photography - Nguyễn Chi Lan</title>
+
+  <!-- Google Fonts: Libre Caslon Text & Pinyon Script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       /PHOTOGRAPHY PAGE - RESPONSIVE & FLUID DESIGN (Figma 1440px Scale 0.75)
+       ========================================================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: #FDF6E6;
+      color: #000000;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* Fluid Canvas Container */
+    .viewport-canvas {
+      position: relative;
+      width: 100%;
+      max-width: 1440px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background-color: #FDF6E6;
+      padding: 30.11px 75px 40px 75px;
+      display: flex;
+    }
+
+    /* --------------------------------------------------------------------------
+       SIDEBAR NAVIGATION
+       -------------------------------------------------------------------------- */
+    .sidebar-nav {
+      width: 180px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5.25px;
+      margin-top: 23px;
+    }
+
+    .nav-link {
+      display: block;
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 700;
+      font-size: 15.75px; /* 21 * 0.75 */
+      line-height: 15.75px;
+      color: #BEBEBE;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: #585858;
+      transform: translateX(2px);
+    }
+
+    .nav-link.active {
+      color: #585858;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* --------------------------------------------------------------------------
+       MAIN CONTENT COLUMN
+       -------------------------------------------------------------------------- */
+    .main-content {
+      flex: 1 1 0;
+      min-width: 0;
+      width: 100%;
+      max-width: 1072.5px;
+      margin-left: clamp(20px, 2.5vw, 37.5px);
+    }
+
+    /* Breadcrumb /photography */
+    .breadcrumb {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: 15px; /* 20 * 0.75 */
+      line-height: 21px; /* 28 * 0.75 */
+      color: #9E9E9E;
+      margin-bottom: 22.85px;
+      user-select: none;
+    }
+
+    /* Title: Photography. */
+    .page-title {
+      display: flex;
+      align-items: baseline;
+      color: #B97278;
+      margin-bottom: 16.35px; /* (190.42 - 110.62 - 58) * 0.75 */
+      user-select: none;
+    }
+
+    .title-initial {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 97.5px; /* 130 * 0.75 */
+      line-height: 0.75;
+      font-weight: 400;
+      margin-right: 3px;
+    }
+
+    .title-rest {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 500;
+      font-size: 45px; /* 60 * 0.75 */
+      line-height: 43.5px;
+    }
+
+    /* Intro description */
+    .intro-text {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: 13.5px; /* 18 * 0.75 */
+      line-height: 16.5px; /* 22 * 0.75 */
+      color: #585858;
+      width: 100%;
+      max-width: 1072.5px;
+      margin-bottom: 35px;
+    }
+
+    /* --------------------------------------------------------------------------
+       3-COLUMN PHOTOGRAPHY CARDS GRID
+       Figma baseline alignment: all cards end at y: 899.21 (bottom: 0)
+       -------------------------------------------------------------------------- */
+    .photography-grid {
+      position: relative;
+      width: 100%;
+      max-width: 1072.5px;
+      aspect-ratio: 1072.5 / 420;
+      height: auto;
+    }
+
+    .photo-card {
+      position: absolute;
+      bottom: 0;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .card-title {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(14px, 1.4vw, 18.75px);
+      line-height: 1.25;
+      color: #585858;
+      margin-bottom: 9.75px;
+      transition: color 0.2s ease;
+    }
+
+    .photo-card:hover .card-title {
+      color: #CD6E49;
+    }
+
+    .card-img-wrap {
+      position: relative;
+      overflow: hidden;
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    /* 50% Black Overlay on Hover (Figma Variant2) */
+    .card-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .photo-card:hover .card-img-wrap::after {
+      opacity: 1;
+    }
+
+    .photo-card:hover .card-img-wrap img {
+      transform: scale(1.02);
+    }
+
+    /* Card 1: Street Photography */
+    .card-street {
+      left: 0;
+      width: 49.18%;
+    }
+
+    .card-street .card-img-wrap {
+      aspect-ratio: 527.49 / 352.34;
+    }
+
+    /* Card 2: Flowers */
+    .card-flowers {
+      left: 50.00%;
+      width: 24.67%;
+    }
+
+    .card-flowers .card-img-wrap {
+      aspect-ratio: 264.60 / 176.42;
+    }
+
+    /* Card 3: Portrait */
+    .card-portrait {
+      left: 75.74%;
+      width: 24.26%;
+    }
+
+    .card-portrait .card-img-wrap {
+      aspect-ratio: 260.14 / 390.16;
+    }
+
+    /* --------------------------------------------------------------------------
+       RESPONSIVE DESIGN (Matching Image 2 & Image 3)
+       -------------------------------------------------------------------------- */
+    @media (max-width: 880px) {
+      .viewport-canvas {
+        flex-direction: column;
+        padding: 24px 20px 48px;
+        min-height: auto;
+      }
+
+      .sidebar-nav {
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 24px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .photography-grid {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .photo-card {
+        position: relative;
+        bottom: auto;
+        left: auto !important;
+        width: 100% !important;
+        max-width: 540px;
+        margin: 0 auto;
+      }
+
+      .card-street .card-img-wrap {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 527.49 / 352.34;
+      }
+
+      .card-flowers .card-img-wrap {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 264.60 / 176.42;
+      }
+
+      .card-portrait .card-img-wrap {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 260.14 / 390.16;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .viewport-canvas {
+        padding: 16px 14px 36px;
+      }
+
+      .sidebar-nav {
+        gap: 8px 12px;
+      }
+
+      .title-initial {
+        font-size: 64px;
+      }
+
+      .title-rest {
+        font-size: 28px;
+        line-height: 28px;
+      }
+
+      .card-title {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-canvas">
+
+    <!-- ======================================================================
+         1. SIDEBAR NAVIGATION
+         ====================================================================== -->
+    <nav class="sidebar-nav" aria-label="Main Navigation">
+      <a href="../index.html" class="nav-link">/homepage</a>
+      <a href="index.html" class="nav-link active" aria-current="page">/photography</a>
+      <a href="../filmmaking/index.html" class="nav-link">/filmaking</a>
+      <a href="../music/index.html" class="nav-link">/music</a>
+      <a href="../dance-performance/index.html" class="nav-link">/dance&amp;performance</a>
+      <a href="../art/index.html" class="nav-link">/art</a>
+      <a href="../community/index.html" class="nav-link">/community</a>
+    </nav>
+
+    <!-- ======================================================================
+         2. MAIN CONTENT
+         ====================================================================== -->
+    <main class="main-content">
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">/photography</div>
+
+      <!-- Page Title -->
+      <h1 class="page-title">
+        <span class="title-initial">P</span><span class="title-rest">hotography.</span>
+      </h1>
+
+      <!-- Intro Paragraph -->
+      <p class="intro-text">
+        I took my first ever “semi-artistic” photograph on a film camera, which taught me how to respect every ray of light, master my exposure triangle and approach every frame with intention. Whether immersed in the candid energy of street photography or intimate storytelling of portraiture, my love for the medium always comes down to capturing fleeting moments and turning them into lasting memories.
+      </p>
+
+      <!-- 3-Column Photography Cards Grid -->
+      <div class="photography-grid">
+
+        <!-- Card 1: Street Photography -->
+        <a href="street-photography/index.html" class="photo-card card-street" title="View Street Photography">
+          <div class="card-title">/street photography</div>
+          <div class="card-img-wrap">
+            <img src="../assets/photography/street_photo.jpg" alt="Street photography of schoolchildren">
+          </div>
+        </a>
+
+        <!-- Card 2: Flowers -->
+        <a href="flowers/index.html" class="photo-card card-flowers" title="View Flowers">
+          <div class="card-title">/flowers</div>
+          <div class="card-img-wrap">
+            <img src="../assets/photography/flower_photo.jpg" alt="Flower bouquet photograph">
+          </div>
+        </a>
+
+        <!-- Card 3: Portrait -->
+        <a href="portrait/index.html" class="photo-card card-portrait" title="View Portrait Photography">
+          <div class="card-title">/portrait</div>
+          <div class="card-img-wrap">
+            <img src="../assets/photography/portrait_cover.jpg" alt="Portrait photography concept">
+          </div>
+        </a>
+
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
+

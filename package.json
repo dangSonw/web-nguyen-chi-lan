@@ -1,0 +1,12 @@
+{
+  "name": "web-nguyen-chi-lan",
+  "version": "1.0.0",
+  "description": "Portfolio website for Nguyen Chi Lan",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

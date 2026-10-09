@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>/art - Nguyễn Chi Lan</title>
+
+  <!-- Google Fonts: Libre Caslon Text & Pinyon Script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       /ART PAGE - RESPONSIVE & FLUID DESIGN (Figma 1440px Scale 0.75)
+       ========================================================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: #FDF6E6;
+      color: #000000;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* Fluid Canvas Container */
+    .viewport-canvas {
+      position: relative;
+      width: 100%;
+      max-width: 1440px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background-color: #FDF6E6;
+      padding: 30.11px 75px 77.95px 75px;
+      display: flex;
+    }
+
+    /* --------------------------------------------------------------------------
+       SIDEBAR NAVIGATION
+       -------------------------------------------------------------------------- */
+    .sidebar-nav {
+      width: 180px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5.25px;
+      margin-top: 23px;
+    }
+
+    .nav-link {
+      display: block;
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 700;
+      font-size: 15.75px; /* 21 * 0.75 */
+      line-height: 15.75px;
+      color: #BEBEBE;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: #585858;
+      transform: translateX(2px);
+    }
+
+    .nav-link.active {
+      color: #585858;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* --------------------------------------------------------------------------
+       MAIN CONTENT COLUMN
+       -------------------------------------------------------------------------- */
+    .main-content {
+      flex: 1 1 0;
+      min-width: 0;
+      width: 100%;
+      max-width: 1072.5px;
+      margin-left: clamp(20px, 2.5vw, 37.5px);
+    }
+
+    /* Breadcrumb /art */
+    .breadcrumb {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: 15px; /* 20 * 0.75 */
+      line-height: 21px; /* 28 * 0.75 */
+      color: #9E9E9E;
+      margin-bottom: 31.85px; /* (110.62 - 40.15 - 28) * 0.75 */
+      user-select: none;
+    }
+
+    /* Title: Art. with artistic drop-cap initial */
+    .page-title {
+      display: flex;
+      align-items: baseline;
+      color: #B97278;
+      margin-bottom: 16.35px; /* (190.42 - 110.62 - 58) * 0.75 */
+      user-select: none;
+    }
+
+    .title-initial {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 97.5px; /* 130 * 0.75 */
+      line-height: 0.75;
+      font-weight: 400;
+      margin-right: 2px;
+    }
+
+    .title-rest {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 500;
+      font-size: 45px; /* 60 * 0.75 */
+      line-height: 43.5px;
+    }
+
+    /* Intro description */
+    .intro-text {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: 13.5px; /* 18 * 0.75 */
+      line-height: 16.5px; /* 22 * 0.75 */
+      color: #585858;
+      width: 100%;
+      max-width: 1072.5px;
+      margin-bottom: 49.28px; /* (300.12 - 190.42 - 44) * 0.75 */
+    }
+
+    /* --------------------------------------------------------------------------
+       SECTION HEADINGS & PARAGRAPHS
+       -------------------------------------------------------------------------- */
+    .section-heading {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 600;
+      font-size: 18px; /* 24 * 0.75 */
+      line-height: 18px;
+      color: #585858;
+      margin-bottom: 11.48px; /* (339.43 - 300.12 - 24) * 0.75 */
+    }
+
+    .section-desc {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: 13.5px; /* 18 * 0.75 */
+      line-height: 16.5px; /* 22 * 0.75 */
+      color: #585858;
+      width: 100%;
+      max-width: 420px; /* 560 * 0.75 */
+    }
+
+    /* --------------------------------------------------------------------------
+       PILL BADGES (Frame 6 & Frame 7)
+       -------------------------------------------------------------------------- */
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #B97278;
+      border-radius: 15px; /* 20 * 0.75 */
+      height: 30px; /* 40 * 0.75 */
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 600;
+      font-size: 15px; /* 20 * 0.75 */
+      line-height: 15px;
+      color: #FFFFFF;
+      user-select: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .badge-pose {
+      width: 299.25px; /* 399 * 0.75 */
+      margin-top: 61.66px; /* (487.64 - 339.43 - 66) * 0.75 */
+      margin-bottom: 28.62px; /* (565.8 - 487.64 - 40) * 0.75 */
+    }
+
+    .badge-dientong {
+      width: 371.25px; /* 495 * 0.75 */
+      margin-top: 64.31px; /* (1756.14 - 1670.4) * 0.75 */
+      margin-bottom: 36.39px; /* (1844.66 - 1756.14 - 40) * 0.75 */
+    }
+
+    /* --------------------------------------------------------------------------
+       PHOTOSHOOT 1: FASHION COLLAGE (7 Cutout Images)
+       -------------------------------------------------------------------------- */
+    .fashion-collage {
+      position: relative;
+      width: 100%;
+      max-width: 1072.5px;
+      aspect-ratio: 1072.5 / 828.45;
+      height: auto;
+    }
+
+    .cutout-img {
+      position: absolute;
+      display: block;
+      object-fit: contain;
+      transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cutout-img:hover {
+      transform: scale(1.025);
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+      z-index: 20;
+    }
+
+    /* Cutout 1: Crouching black outfit */
+    .cutout-1 {
+      left: 0;
+      top: 6.55%;
+      width: 21.78%;
+      height: 36.04%;
+    }
+
+    /* Cutout 2: Standing hands behind head */
+    .cutout-2 {
+      left: 23.92%;
+      top: 1.56%;
+      width: 19.98%;
+      height: 53.05%;
+    }
+
+    /* Cutout 3: Waist-up touching chin */
+    .cutout-3 {
+      left: 46.33%;
+      top: 3.63%;
+      width: 20.25%;
+      height: 41.87%;
+    }
+
+    /* Cutout 4: Seated leaning back */
+    .cutout-4 {
+      left: 72.24%;
+      top: 0;
+      width: 27.76%;
+      height: 47.06%;
+    }
+
+    /* Cutout 5: Standing in jeans hands up */
+    .cutout-5 {
+      left: 1.67%;
+      top: 47.06%;
+      width: 21.94%;
+      height: 50.29%;
+    }
+
+    /* Cutout 6: Crouching in jeans */
+    .cutout-6 {
+      left: 29.41%;
+      top: 51.39%;
+      width: 18.77%;
+      height: 48.61%;
+    }
+
+    /* Cutout 7: Lying on floor in jeans */
+    .cutout-7 {
+      left: 48.17%;
+      top: 59.44%;
+      width: 51.83%;
+      height: 37.91%;
+    }
+
+    /* --------------------------------------------------------------------------
+       PHOTOSHOOT 2: DIEN TONG GRID (3x2 Photo Grid)
+       -------------------------------------------------------------------------- */
+    .dientong-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 7.40px; /* 9.86 * 0.75 */
+      row-gap: 7.40px;
+      width: 100%;
+      max-width: 1072.5px;
+      margin-bottom: 58.71px; /* (2559.90 - 2481.62) * 0.75 */
+    }
+
+    .dientong-item {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 352.57 / 235.16;
+      height: auto;
+      overflow: hidden;
+      background-color: #000000;
+    }
+
+    .dientong-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+
+    .dientong-item:hover .dientong-img {
+      transform: scale(1.03);
+      filter: brightness(0.95);
+    }
+
+    /* --------------------------------------------------------------------------
+       SECTION 2: ARTWORKS & PAINTINGS
+       -------------------------------------------------------------------------- */
+    .artworks-desc {
+      margin-bottom: 16.36px; /* (2686.88 - 2599.07 - 66) * 0.75 */
+    }
+
+    .artworks-stage {
+      position: relative;
+      width: 100%;
+      max-width: 1072.5px;
+      aspect-ratio: 1072.5 / 510;
+      height: auto;
+    }
+
+    /* Left: Balloon-twisting */
+    .art-col-left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30.97%;
+    }
+
+    .art-balloon-bg {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 332 / 488;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: filter 0.3s ease;
+    }
+
+    /* Pop-out Cutout of 2 girls */
+    .art-girls-cutout {
+      position: absolute;
+      left: 17.05%;
+      top: 8.62%;
+      width: 21.12%;
+      height: auto;
+      aspect-ratio: 226 / 444;
+      z-index: 10;
+      pointer-events: none;
+      filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.15));
+    }
+
+    .art-caption-left {
+      position: absolute;
+      left: 0;
+      top: 96%;
+      width: 35.29%;
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(10px, 1.1vw, 12px);
+      line-height: 1.35;
+      color: #CD6E49;
+      text-align: center;
+    }
+
+    /* Middle: Seagul Sketch */
+    .art-col-middle {
+      position: absolute;
+      left: 31.88%;
+      top: 0;
+      width: 39.04%;
+      z-index: 5;
+    }
+
+    .art-seagul-img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 418 / 260;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: filter 0.3s ease;
+    }
+
+    .art-caption-middle {
+      position: absolute;
+      left: 31.88%;
+      top: 53%;
+      width: 39.04%;
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(10px, 1.1vw, 12px);
+      line-height: 1.35;
+      color: #CD6E49;
+      text-align: center;
+    }
+
+    /* Right: Joy, Anger, Love, and Hatred */
+    .art-col-right {
+      position: absolute;
+      left: 71.87%;
+      top: 0;
+      width: 28.13%;
+      z-index: 5;
+    }
+
+    .art-emotions-img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 301 / 488;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: filter 0.3s ease;
+    }
+
+    .art-caption-right {
+      position: absolute;
+      left: 71.87%;
+      top: 96%;
+      width: 28.13%;
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(10px, 1.1vw, 12px);
+      line-height: 1.35;
+      color: #CD6E49;
+      text-align: center;
+    }
+
+    /* --------------------------------------------------------------------------
+       RESPONSIVE DESIGN (Matching Image 2 & Image 3)
+       -------------------------------------------------------------------------- */
+    @media (max-width: 880px) {
+      .viewport-canvas {
+        flex-direction: column;
+        padding: 24px 20px 48px;
+      }
+
+      .sidebar-nav {
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 24px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .section-desc {
+        max-width: 100%;
+      }
+
+      .badge-pose, .badge-dientong {
+        max-width: 100%;
+      }
+
+      .fashion-collage {
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 30px;
+      }
+
+      .cutout-img {
+        position: relative;
+        left: auto !important;
+        top: auto !important;
+        width: auto !important;
+        max-width: 45% !important;
+        height: auto !important;
+        max-height: 280px;
+        object-fit: contain;
+      }
+
+      .dientong-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .artworks-stage {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .art-col-left, .art-col-middle, .art-col-right {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        max-width: 450px;
+        margin: 0 auto;
+      }
+
+      .art-balloon-bg, .art-seagul-img, .art-emotions-img {
+        width: 100%;
+        height: auto;
+      }
+
+      .art-caption-left, .art-caption-middle, .art-caption-right {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      .art-girls-cutout {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: auto;
+        top: auto;
+        width: 60%;
+        height: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .viewport-canvas {
+        padding: 16px 14px 36px;
+      }
+
+      .sidebar-nav {
+        gap: 8px 12px;
+      }
+
+      .title-initial {
+        font-size: 64px;
+      }
+
+      .title-rest {
+        font-size: 28px;
+        line-height: 28px;
+      }
+
+      .section-heading {
+        font-size: 16px;
+      }
+
+      .cutout-img {
+        max-width: 85% !important;
+      }
+
+      .dientong-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-canvas">
+
+    <!-- ======================================================================
+         1. SIDEBAR NAVIGATION
+         ====================================================================== -->
+    <nav class="sidebar-nav" aria-label="Main Navigation">
+      <a href="../index.html" class="nav-link">/homepage</a>
+      <a href="../photography/index.html" class="nav-link">/photography</a>
+      <a href="../filmmaking/index.html" class="nav-link">/filmaking</a>
+      <a href="../music/index.html" class="nav-link">/music</a>
+      <a href="../dance-performance/index.html" class="nav-link">/dance&amp;performance</a>
+      <a href="index.html" class="nav-link active" aria-current="page">/art</a>
+      <a href="../community/index.html" class="nav-link">/community</a>
+    </nav>
+
+    <!-- ======================================================================
+         2. MAIN CONTENT
+         ====================================================================== -->
+    <main class="main-content">
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">/art</div>
+
+      <!-- Page Title -->
+      <h1 class="page-title">
+        <span class="title-initial">A</span><span class="title-rest">rt.</span>
+      </h1>
+
+      <!-- Intro Paragraph -->
+      <p class="intro-text">
+        Art and fashion serve as my tactile canvases for identity and storytelling. Whether rendering concepts through painting or styling garments, I treat visual design as a living medium to explore texture, form, and personal expression.
+      </p>
+
+      <!-- --------------------------------------------------------------------
+           SECTION 1: Fashion & Styling
+           -------------------------------------------------------------------- -->
+      <section class="fashion-section">
+        <h2 class="section-heading">Fashion &amp; Styling</h2>
+        <p class="section-desc">
+          Fashion is wearable art. Through curating looks and conceptualizing designs, I love experimenting with silhouettes and aesthetics to tell visual stories without saying a word.
+        </p>
+
+        <!-- Pill Badge 1: POSE -->
+        <div class="pill-badge badge-pose">
+          POSE | Photographer, Art Director.
+        </div>
+
+        <!-- Photoshoot 1 Cutout Collage Stage -->
+        <div class="fashion-collage">
+          <!-- Row 1 cutouts -->
+          <img src="../assets/art/fashion_1_crouching.png" alt="Fashion pose crouching" class="cutout-img cutout-1">
+          <img src="../assets/art/fashion_2_standing.png" alt="Fashion pose standing" class="cutout-img cutout-2">
+          <img src="../assets/art/fashion_3_chin.png" alt="Fashion pose touching chin" class="cutout-img cutout-3">
+          <img src="../assets/art/fashion_4_seated.png" alt="Fashion pose seated" class="cutout-img cutout-4">
+
+          <!-- Row 2 cutouts -->
+          <img src="../assets/art/fashion_5_jeans_standing.png" alt="Fashion jeans pose standing" class="cutout-img cutout-5">
+          <img src="../assets/art/fashion_6_jeans_crouch.png" alt="Fashion jeans pose crouching" class="cutout-img cutout-6">
+          <img src="../assets/art/fashion_7_jeans_lying.png" alt="Fashion jeans pose lying" class="cutout-img cutout-7">
+        </div>
+
+        <!-- Pill Badge 2: Dien Tong -->
+        <div class="pill-badge badge-dientong">
+          Dien Tong | &nbsp;Assistant Photographer, Advisor
+        </div>
+
+        <!-- Photoshoot 2: 3x2 Photo Grid -->
+        <div class="dientong-grid">
+          <div class="dientong-item">
+            <img src="../assets/art/dientong_1.jpg" alt="Dien Tong photoshoot 1" class="dientong-img">
+          </div>
+          <div class="dientong-item">
+            <img src="../assets/art/dientong_2.jpg" alt="Dien Tong photoshoot 2" class="dientong-img">
+          </div>
+          <div class="dientong-item">
+            <img src="../assets/art/dientong_3.jpg" alt="Dien Tong photoshoot 3" class="dientong-img">
+          </div>
+          <div class="dientong-item">
+            <img src="../assets/art/dientong_4.jpg" alt="Dien Tong photoshoot 4" class="dientong-img">
+          </div>
+          <div class="dientong-item">
+            <img src="../assets/art/dientong_5.jpg" alt="Dien Tong photoshoot 5" class="dientong-img">
+          </div>
+          <div class="dientong-item">
+            <img src="../assets/art/dientong_6.jpg" alt="Dien Tong photoshoot 6" class="dientong-img">
+          </div>
+        </div>
+      </section>
+
+      <!-- --------------------------------------------------------------------
+           SECTION 2: Artworks & Paintings
+           -------------------------------------------------------------------- -->
+      <section class="artworks-section">
+        <h2 class="section-heading">Artworks &amp; Paintings</h2>
+        <p class="section-desc artworks-desc">
+          From acrylics to mixed media, painting is my space for raw experimentation. It allows me to translate internal thoughts and abstract emotions into tangible layers of color and texture.
+        </p>
+
+        <!-- Artworks Collage Stage -->
+        <div class="artworks-stage">
+
+          <!-- Left Artwork: Balloon-twisting with Pop-out Cutout -->
+          <div class="art-col-left">
+            <img src="../assets/art/artwork_balloon_bg.jpg" alt="Balloon flowers background" class="art-balloon-bg">
+          </div>
+          <img src="../assets/art/artwork_girls_cutout.png" alt="Two girls with balloons pop-out cutout" class="art-girls-cutout">
+          <div class="art-caption-left">Balloon-twisting</div>
+
+          <!-- Middle Artwork: Seagul Sketch -->
+          <div class="art-col-middle">
+            <img src="../assets/art/artwork_seagul.jpg" alt="Seagul Sketch" class="art-seagul-img">
+          </div>
+          <div class="art-caption-middle">Seagul Sketch</div>
+
+          <!-- Right Artwork: Joy, Anger, Love, and Hatred -->
+          <div class="art-col-right">
+            <img src="../assets/art/artwork_emotions.jpg" alt="Joy, Anger, Love, and Hatred" class="art-emotions-img">
+          </div>
+          <div class="art-caption-right">Joy, Anger, Love, and Hatred</div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>
+
