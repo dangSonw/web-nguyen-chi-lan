@@ -9,6 +9,8 @@ import Portrait from './pages/photography/Portrait';
 import StreetPhotography from './pages/photography/StreetPhotography';
 import Filmmaking from './pages/Filmmaking';
 import DancePerformance from './pages/DancePerformance';
+import Art from './pages/Art';
+import Community from './pages/Community';
 
 function PageTransition({ children }) {
   return (
@@ -24,30 +26,7 @@ function PageTransition({ children }) {
   );
 }
 
-// Placeholder for routes under construction during step-by-step migration
-function RoutePlaceholder({ title }) {
-  const navigate = useNavigate();
-  return (
-    <div style={{ padding: '60px 80px', fontFamily: 'Libre Caslon Text, serif', color: '#000' }}>
-      <h2 style={{ color: '#A53C5E', marginBottom: '16px' }}>{title}</h2>
-      <p style={{ marginBottom: '24px' }}>Trang này đang sẵn sàng để chuyển đổi ở các bước tiếp theo.</p>
-      <button
-        onClick={() => navigate('/')}
-        style={{
-          padding: '10px 20px',
-          backgroundColor: '#A53C5E',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          fontFamily: 'Libre Caslon Text, serif'
-        }}
-      >
-        ← Quay lại Trang Chủ
-      </button>
-    </div>
-  );
-}
+
 
 export default function App() {
   const navigate = useNavigate();
@@ -136,7 +115,7 @@ export default function App() {
           path="/art"
           element={
             <PageTransition>
-              <RoutePlaceholder title="/art" />
+              <Art />
             </PageTransition>
           }
         />
@@ -144,7 +123,7 @@ export default function App() {
           path="/community"
           element={
             <PageTransition>
-              <RoutePlaceholder title="/community" />
+              <Community />
             </PageTransition>
           }
         />

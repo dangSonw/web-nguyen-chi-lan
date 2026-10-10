@@ -1,49 +1,49 @@
 /**
  * Node.js Server for Nguyễn Chi Lan Portfolio
  * Compatible with Express 5 & Node.js 24+
- * Serves static assets directly from public/ (where index.html is the homepage)
+ * Serves Vite SPA production build (from dist/) when built,
+ * with fallback to public/ for static media assets.
  */
 
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const DIST_DIR = path.join(__dirname, 'dist');
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
-// 1. Alias redirects for home
-app.get('/home', (req, res) => res.redirect('/'));
-app.get('/home/', (req, res) => res.redirect('/'));
-app.get('/homepage', (req, res) => res.redirect('/'));
-app.get('/homepage/', (req, res) => res.redirect('/'));
+const hasDist = fs.existsSync(path.join(DIST_DIR, 'index.html'));
 
-// 2. Special aliases & redirects
-app.get('/filmaking', (req, res) => res.redirect('/filmmaking/'));
-app.get('/dance&performance', (req, res) => res.redirect('/dance-performance/'));
-app.get(['/photography/portrait1', '/photography/portrait1/'], (req, res) => {
-  res.sendFile(path.join(PUBLIC_DIR, 'photography', 'portrait', 'index.html'));
-});
-app.get(['/photography/portrait2', '/photography/portrait2/'], (req, res) => {
-  res.sendFile(path.join(PUBLIC_DIR, 'photography', 'portrait', 'portrait2.html'));
-});
-app.get('/photography/portrait/2', (req, res) => {
-  res.sendFile(path.join(PUBLIC_DIR, 'photography', 'portrait', 'portrait2.html'));
-});
-app.get('/photography/portrait/portrait2', (req, res) => {
-  res.sendFile(path.join(PUBLIC_DIR, 'photography', 'portrait', 'portrait2.html'));
-});
+if (hasDist) {
+  // 1. Serve Vite production build static assets
+  app.use(express.static(DIST_DIR));
 
-// 3. Serve static files (express.static serves public/index.html on '/')
-app.use(express.static(PUBLIC_DIR));
+  // 2. Also serve raw media from public/assets if needed
+  app.use('/assets', express.static(path.join(PUBLIC_DIR, 'assets')));
 
-// 4. Fallback for unmatched routes
-app.use((req, res) => {
-  res.redirect('/');
-});
+  // 3. SPA Fallback: All routes return dist/index.html
+  app.use((req, res) => {
+    res.sendFile(path.join(DIST_DIR, 'index.html'));
+  });
+} else {
+  // Legacy MPA mode
+  app.get('/home', (req, res) => res.redirect('/'));
+  app.get('/homepage', (req, res) => res.redirect('/'));
+  app.get('/filmaking', (req, res) => res.redirect('/filmmaking/'));
+  app.get('/dance&performance', (req, res) => res.redirect('/dance-performance/'));
+
+  app.use(express.static(PUBLIC_DIR));
+  app.use((req, res) => {
+    res.redirect('/');
+  });
+}
 
 // Start Server
 app.listen(PORT, () => {
   console.log(`====================================================`);
   console.log(`Nguyễn Chi Lan Portfolio Server is running!`);
+  console.log(`Mode: ${hasDist ? 'Vite SPA (dist/)' : 'Legacy MPA (public/)'}`);
   console.log(`Local URL: http://localhost:${PORT}`);
 });

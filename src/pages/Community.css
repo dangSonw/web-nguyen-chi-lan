@@ -1,0 +1,372 @@
+/* ==========================================================================
+   /COMMUNITY PAGE - EXACT FIGMA SPECIFICATION & RESPONSIVE FLUID DESIGN
+   ========================================================================== */
+
+/* Breadcrumb /community */
+.community-page .breadcrumb {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.05vw, 22px);
+  line-height: clamp(21px, 1.45vw, 30px);
+  color: #9E9E9E;
+  margin-bottom: clamp(18px, 1.8vw, 32px);
+  user-select: none;
+}
+
+/* Title: Community. */
+.community-page .page-title {
+  display: flex;
+  align-items: baseline;
+  color: #B97278;
+  margin-bottom: clamp(14px, 1.2vw, 24px);
+  user-select: none;
+}
+
+.community-page .title-initial {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(97.5px, 6.8vw, 150px);
+  line-height: 0.75;
+  font-weight: 400;
+  margin-right: 2px;
+}
+
+.community-page .title-rest {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(45px, 3.15vw, 68px);
+  line-height: clamp(43.5px, 3.05vw, 66px);
+}
+
+/* Intro description */
+.community-page .intro-text {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(13.5px, 0.95vw, 19px);
+  line-height: clamp(16.5px, 1.2vw, 25px);
+  color: #585858;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: clamp(35px, 3.5vw, 55px);
+}
+
+/* --------------------------------------------------------------------------
+   PROJECT SECTIONS COMMON STYLES
+   -------------------------------------------------------------------------- */
+.project-section {
+  width: 100%;
+  max-width: 100%;
+}
+
+.project-title {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(18px, 1.25vw, 24px);
+  line-height: 1.2;
+  color: #585858;
+  margin-bottom: clamp(8px, 0.8vw, 14px);
+}
+
+.project-desc {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(13.5px, 0.95vw, 18px);
+  line-height: clamp(16.5px, 1.2vw, 24px);
+  color: #585858;
+}
+
+.project-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  min-width: 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.project-img:hover {
+  filter: brightness(0.96);
+}
+
+/* Orange accent quote texts */
+.accent-quote {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(13px, 0.95vw, 18px);
+  line-height: clamp(16.5px, 1.2vw, 24px);
+  color: #CD6E49;
+}
+
+/* --------------------------------------------------------------------------
+   1. EQUIMED SECTION
+   -------------------------------------------------------------------------- */
+#equimed {
+  margin-bottom: clamp(38px, 4vw, 62px);
+}
+
+#equimed .project-desc {
+  width: 100%;
+  max-width: clamp(420px, 40vw, 600px);
+  margin-bottom: clamp(18px, 2vw, 30px);
+}
+
+.equimed-row-1 {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(8px, 1.2vw, 16px);
+  width: 100%;
+  margin-bottom: clamp(14px, 1.5vw, 24px);
+}
+
+.equimed-row-1 .photo-award {
+  flex: 39.6 1 0;
+  min-width: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 567 / 378;
+}
+
+.equimed-row-1 .photo-pitch {
+  flex: 39.6 1 0;
+  min-width: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 566 / 378;
+}
+
+.equimed-row-1 .quote-top {
+  flex: 18.9 1 0;
+  min-width: 130px;
+}
+
+.equimed-row-2 {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(10px, 1.2vw, 18px);
+  width: 100%;
+}
+
+.equimed-row-2 .quote-left {
+  flex: 18.6 1 0;
+  min-width: 130px;
+}
+
+.equimed-slides-grid {
+  flex: 80.2 1 0;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(4px, 0.6vw, 10px);
+}
+
+.equimed-slide {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 567 / 319;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* --------------------------------------------------------------------------
+   2. LIBRERIA PROJECT SECTION
+   -------------------------------------------------------------------------- */
+#libreria {
+  margin-bottom: clamp(38px, 4.2vw, 65px);
+}
+
+#libreria .project-desc {
+  width: 100%;
+  max-width: clamp(420px, 40vw, 600px);
+  margin-bottom: clamp(18px, 2vw, 30px);
+}
+
+.libreria-photos-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(4px, 0.6vw, 10px);
+  width: 100%;
+}
+
+.libreria-photos-row .project-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 470 / 315;
+  min-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. THE WILDFLOWER PROJECT SECTION
+   -------------------------------------------------------------------------- */
+#wildflower {
+  margin-bottom: clamp(36px, 3.8vw, 55px);
+}
+
+#wildflower .project-desc {
+  width: 100%;
+  max-width: clamp(420px, 40vw, 600px);
+  margin-bottom: clamp(18px, 2vw, 30px);
+}
+
+.wildflower-row-1 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(6px, 0.8vw, 12px);
+  width: 100%;
+  margin-bottom: clamp(6px, 0.8vw, 12px);
+}
+
+.wildflower-row-1 .project-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 710 / 354;
+  min-width: 0;
+}
+
+.wildflower-wide-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1430 / 715;
+}
+
+/* --------------------------------------------------------------------------
+   4. Y4C (YOUTH FOR COMMUNITY) SECTION
+   -------------------------------------------------------------------------- */
+#y4c {
+  margin-bottom: clamp(36px, 3.8vw, 55px);
+}
+
+#y4c .project-desc {
+  width: 100%;
+  max-width: clamp(420px, 40vw, 600px);
+  margin-bottom: clamp(14px, 1.4vw, 22px);
+}
+
+.y4c-wide-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1430 / 657;
+  margin-bottom: clamp(10px, 1.2vw, 16px);
+}
+
+.y4c-row-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(8px, 1.2vw, 16px);
+  width: 100%;
+}
+
+.y4c-row-2 .project-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 707 / 471;
+  min-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. TU SU SECTION
+   -------------------------------------------------------------------------- */
+#tusu {
+  margin-bottom: 0;
+}
+
+#tusu .project-desc {
+  width: 100%;
+  max-width: clamp(420px, 40vw, 600px);
+  margin-bottom: clamp(18px, 2vw, 30px);
+}
+
+.tusu-photos-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(6px, 0.8vw, 12px);
+  width: 100%;
+}
+
+.tusu-photos-row .project-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 713 / 474;
+  min-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (Prioritizing fluid resize first)
+   -------------------------------------------------------------------------- */
+@media (max-width: 880px) {
+  .project-desc {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .equimed-row-1 {
+    flex-wrap: wrap;
+  }
+
+  .equimed-row-1 .photo-award,
+  .equimed-row-1 .photo-pitch {
+    flex: 1 1 calc(50% - 8px);
+  }
+
+  .equimed-row-1 .quote-top {
+    flex: 1 1 100%;
+    margin-top: 10px;
+  }
+
+  .equimed-row-2 {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .equimed-row-2 .quote-left {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .equimed-slides-grid {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 580px) {
+  .community-page .title-initial {
+    font-size: 64px;
+  }
+
+  .community-page .title-rest {
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  .project-title {
+    font-size: 16px;
+  }
+
+  .equimed-row-1 .photo-award,
+  .equimed-row-1 .photo-pitch {
+    flex: 1 1 100%;
+  }
+
+  .equimed-slides-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .libreria-photos-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .wildflower-row-1 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .y4c-row-2 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .tusu-photos-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
