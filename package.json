@@ -2,15 +2,13 @@
   "name": "web-nguyen-chi-lan",
   "version": "1.0.0",
   "description": "Portfolio website for Nguyen Chi Lan",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite preview"
   },
   "dependencies": {
-    "express": "^5.2.1",
     "framer-motion": "^12.40.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
