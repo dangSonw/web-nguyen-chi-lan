@@ -7,24 +7,17 @@ export default function Home() {
   const [openPopup, setOpenPopup] = useState(null); // 'shirt' | 'skirt' | 'tie' | null
   const canvasRef = useRef(null);
 
-  // Proportional auto-scaling for mobile & tablet screens (< 1440px)
+  // Proportional auto-scaling to fit both width and height (always fit viewport)
   useEffect(() => {
     function scaleHomepage() {
       const canvas = canvasRef.current;
       if (!canvas) return;
       const winW = window.innerWidth;
-      const scale = winW / 1440;
-      if (winW !== 1440) {
-        canvas.style.transform = `scale(${scale})`;
-        canvas.style.transformOrigin = 'top left';
-        canvas.style.margin = '0';
-        document.body.style.height = `${810 * scale}px`;
-      } else {
-        canvas.style.transform = '';
-        canvas.style.transformOrigin = '';
-        canvas.style.margin = '0 auto';
-        document.body.style.height = '';
-      }
+      const winH = window.innerHeight;
+      const scale = Math.min(winW / 1440, winH / 810);
+
+      canvas.style.transform = `scale(${scale})`;
+      canvas.style.transformOrigin = 'center center';
     }
 
     window.addEventListener('resize', scaleHomepage);
@@ -32,7 +25,7 @@ export default function Home() {
 
     return () => {
       window.removeEventListener('resize', scaleHomepage);
-      document.body.style.height = '';
+      document.body.style.overflow = '';
     };
   }, []);
 
@@ -52,7 +45,8 @@ export default function Home() {
   };
 
   return (
-    <main className="viewport-canvas" ref={canvasRef}>
+    <div className="home-page-container">
+      <main className="viewport-canvas" ref={canvasRef}>
       {/* ======================================================================
            1. LEFT SECTION: Typography & Bio
            ====================================================================== */}
@@ -195,6 +189,7 @@ export default function Home() {
         <Link to="/community" className="popup-link link-item-2" title="Go to Community" />
       </div>
     </main>
+  </div>
   );
 }
 
