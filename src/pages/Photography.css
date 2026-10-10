@@ -1,0 +1,188 @@
+/* ==========================================================================
+   /PHOTOGRAPHY HUB PAGE - FLUID & ADAPTIVE (From Mobile to 1440px, 1920px & 4K)
+   ========================================================================== */
+
+/* Breadcrumb /photography */
+.photography-page .breadcrumb {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.05vw, 22px);
+  line-height: clamp(21px, 1.45vw, 30px);
+  color: #9E9E9E;
+  margin-bottom: clamp(18px, 1.6vw, 32px);
+  user-select: none;
+}
+
+/* Title: Photography. */
+.photography-page .page-title {
+  display: flex;
+  align-items: baseline;
+  color: #B97278;
+  margin-bottom: clamp(14px, 1.2vw, 24px);
+  user-select: none;
+}
+
+.photography-page .title-initial {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(97.5px, 6.8vw, 150px);
+  line-height: 0.75;
+  font-weight: 400;
+  margin-right: 3px;
+}
+
+.photography-page .title-rest {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(45px, 3.15vw, 68px);
+  line-height: clamp(43.5px, 3.05vw, 66px);
+}
+
+/* Intro description */
+.photography-page .intro-text {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(13.5px, 0.95vw, 19px);
+  line-height: clamp(16.5px, 1.2vw, 25px);
+  color: #585858;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: clamp(28px, 2.5vw, 48px);
+}
+
+/* --------------------------------------------------------------------------
+   3-COLUMN PHOTOGRAPHY CARDS GRID
+   Figma baseline alignment: all cards end at bottom: 0
+   -------------------------------------------------------------------------- */
+.photography-grid {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1072.5 / 420;
+  height: auto;
+}
+
+.photo-card {
+  position: absolute;
+  bottom: 0;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.card-title {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(14px, 1.4vw, 24px);
+  line-height: 1.25;
+  color: #585858;
+  margin-bottom: clamp(8px, 0.7vw, 14px);
+  transition: color 0.2s ease;
+}
+
+.photo-card:hover .card-title {
+  color: #CD6E49;
+}
+
+.card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+/* 50% Black Overlay on Hover (Figma Variant2) */
+.card-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.photo-card:hover .card-img-wrap::after {
+  opacity: 1;
+}
+
+.photo-card:hover .card-img-wrap img {
+  transform: scale(1.025);
+}
+
+/* Card 1: Street Photography */
+.card-street {
+  left: 0;
+  width: 49.18%;
+}
+
+.card-street .card-img-wrap {
+  aspect-ratio: 527.49 / 352.34;
+}
+
+/* Card 2: Flowers */
+.card-flowers {
+  left: 50.00%;
+  width: 24.67%;
+}
+
+.card-flowers .card-img-wrap {
+  aspect-ratio: 264.60 / 176.42;
+}
+
+/* Card 3: Portrait */
+.card-portrait {
+  left: 75.74%;
+  width: 24.26%;
+}
+
+.card-portrait .card-img-wrap {
+  aspect-ratio: 260.14 / 390.16;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN FOR TABLET & MOBILE
+   -------------------------------------------------------------------------- */
+@media (max-width: 880px) {
+  .photography-grid {
+    height: auto;
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .photo-card {
+    position: relative;
+    bottom: auto;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .card-street .card-img-wrap {
+    width: 100% !important;
+    aspect-ratio: 527.49 / 352.34;
+  }
+
+  .card-flowers .card-img-wrap {
+    width: 100% !important;
+    aspect-ratio: 264.60 / 176.42;
+  }
+
+  .card-portrait .card-img-wrap {
+    width: 100% !important;
+    aspect-ratio: 260.14 / 390.16;
+  }
+}
+

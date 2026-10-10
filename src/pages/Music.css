@@ -1,0 +1,261 @@
+/* ==========================================================================
+   /MUSIC PAGE - FLUID & ADAPTIVE DESIGN (From Mobile to 1440px, 1920px & 4K)
+   ========================================================================== */
+
+/* Breadcrumb /music */
+.music-page .breadcrumb {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.05vw, 22px);
+  line-height: clamp(21px, 1.45vw, 30px);
+  color: #9E9E9E;
+  margin-bottom: clamp(18px, 1.6vw, 32px);
+  user-select: none;
+}
+
+/* Title: Music. with artistic drop-cap initial */
+.music-page .page-title {
+  display: flex;
+  align-items: baseline;
+  color: #B97278;
+  margin-bottom: clamp(14px, 1.2vw, 24px);
+  user-select: none;
+}
+
+.music-page .title-initial {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(97.5px, 6.8vw, 150px);
+  line-height: 0.75;
+  font-weight: 400;
+  margin-right: 3px;
+}
+
+.music-page .title-rest {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(45px, 3.15vw, 68px);
+  line-height: clamp(43.5px, 3.05vw, 66px);
+}
+
+/* Intro description */
+.music-page .intro-text {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(13.5px, 0.95vw, 19px);
+  line-height: clamp(16.5px, 1.2vw, 25px);
+  color: #585858;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: clamp(36px, 3.4vw, 64px);
+}
+
+/* Section Blocks */
+.music-section {
+  width: 100%;
+  max-width: 100%;
+}
+
+.section-title {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(18px, 1.25vw, 26px);
+  line-height: clamp(18px, 1.25vw, 26px);
+  color: #585858;
+  margin-bottom: clamp(10px, 0.8vw, 16px);
+}
+
+.section-desc {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(13.5px, 0.95vw, 19px);
+  line-height: clamp(16.5px, 1.2vw, 25px);
+  color: #585858;
+  width: 100%;
+  max-width: clamp(420px, 32vw, 680px);
+}
+
+/* Section 1: Piano */
+#piano .section-desc {
+  margin-bottom: clamp(16px, 1.2vw, 24px);
+}
+
+/* Section 2: Traditional */
+#traditional-instruments {
+  margin-top: clamp(40px, 3vw, 65px);
+}
+
+#traditional-instruments .section-desc {
+  margin-bottom: clamp(24px, 2vw, 42px);
+}
+
+/* Section 3: Concert */
+#viet-nam-tinh-hoa {
+  margin-top: clamp(55px, 4.5vw, 95px);
+}
+
+#viet-nam-tinh-hoa .section-desc {
+  margin-bottom: clamp(30px, 2.6vw, 52px);
+}
+
+/* --------------------------------------------------------------------------
+   MEDIA LAYOUTS & GRIDS (Fluid & Responsive at all resolutions)
+   -------------------------------------------------------------------------- */
+/* Row 1: Piano Photos (2 items) */
+.row-piano-photos {
+  display: grid;
+  grid-template-columns: 781fr 638.8fr;
+  gap: clamp(6px, 0.8vw, 16px);
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: clamp(7.5px, 0.6vw, 14px);
+}
+
+.row-piano-photos .photo-1 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 781 / 425.9;
+  object-fit: cover;
+  display: block;
+  min-width: 0;
+}
+
+.row-piano-photos .photo-2 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 638.8 / 425.9;
+  object-fit: cover;
+  display: block;
+  min-width: 0;
+}
+
+/* Full width video (Piano video) */
+.video-piano-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+.video-piano-wrapper .video-box {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1432 / 802.9;
+  height: auto;
+}
+
+/* Row 2: Traditional Photos (2 items) */
+.row-trad-photos {
+  display: grid;
+  grid-template-columns: 723.9fr 693.1fr;
+  gap: clamp(8px, 0.9vw, 18px);
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: clamp(9px, 0.7vw, 16px);
+}
+
+.row-trad-photos .photo-1 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 723.9 / 472.4;
+  object-fit: cover;
+  display: block;
+  min-width: 0;
+}
+
+.row-trad-photos .photo-2 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 693.1 / 472.4;
+  object-fit: cover;
+  display: block;
+  min-width: 0;
+}
+
+/* Row 2: Traditional Videos (2 items - Balanced 50-50, 16:9 equal bottom) */
+.row-trad-videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(8px, 0.9vw, 18px);
+  width: 100%;
+  max-width: 100%;
+}
+
+.row-trad-videos .video-col-1,
+.row-trad-videos .video-col-2 {
+  width: 100%;
+  min-width: 0;
+}
+
+.row-trad-videos .video-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+/* Row 3: Concert Photos (3 items - Equal Dimensions) */
+.row-concert-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(6px, 0.75vw, 16px);
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: clamp(10px, 0.8vw, 18px);
+}
+
+.row-concert-photos .photo-concert {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 469.7 / 313.2;
+  object-fit: cover;
+  display: block;
+  min-width: 0;
+}
+
+/* Row 3: Concert Videos (2 items - Balanced 50-50, 16:9 equal bottom) */
+.row-concert-videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(8px, 0.9vw, 18px);
+  width: 100%;
+  max-width: 100%;
+}
+
+.row-concert-videos .video-col-1,
+.row-concert-videos .video-col-2 {
+  width: 100%;
+  min-width: 0;
+}
+
+.row-concert-videos .video-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 720px) {
+  .row-concert-photos {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .row-piano-photos {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .row-trad-photos {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .row-trad-videos {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .row-concert-videos {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}

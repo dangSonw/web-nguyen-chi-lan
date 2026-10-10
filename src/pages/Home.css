@@ -1,0 +1,315 @@
+/* ==========================================================================
+   HOMEPAGE - EXACT FIGMA SPECIFICATION (1440px Fixed Canvas, Scale 0.75)
+   ========================================================================== */
+
+/* Fixed 1440px Canvas Container */
+.viewport-canvas {
+  position: relative;
+  width: 1440px;
+  min-height: 810px;
+  height: 810px;
+  margin: 0 auto;
+  background-color: #FDF6E6;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   LEFT SECTION: Typography & Bio
+   -------------------------------------------------------------------------- */
+.heading-intro {
+  position: absolute;
+  left: 75px;
+  top: 49.4px;
+  width: 435.5px;
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 58.5px;
+  color: #A53C5E;
+  white-space: pre-line;
+  user-select: none;
+  z-index: 2;
+}
+
+.name-hero {
+  position: absolute;
+  left: 65.55px;
+  top: 167.22px;
+  width: 466.1px;
+  height: 151.97px;
+  display: block;
+  user-select: none;
+  z-index: 2;
+}
+
+.bio-text {
+  position: absolute;
+  left: 75px;
+  top: 318.44px;
+  width: 315.35px;
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 16.5px;
+  color: #000000;
+  margin: 0;
+  user-select: none;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   RIGHT SECTION: Portrait & Components
+   -------------------------------------------------------------------------- */
+.circle-bg {
+  position: absolute;
+  left: 697.41px;
+  top: 193.97px;
+  width: 555.92px;
+  height: 555.92px;
+  background-color: #BFD8E8;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.portrait-base {
+  position: absolute;
+  left: 710.87px;
+  top: 49.70px;
+  width: 501.0px;
+  height: 700.19px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+/* Clothing Overlay Highlights */
+.clothing-layer {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  user-select: none;
+}
+
+.clothing-layer.active {
+  opacity: 1;
+}
+
+.layer-shirt {
+  left: 822.05px;
+  top: 168.62px;
+  width: 324.20px;
+  height: 473.97px;
+  z-index: 3;
+}
+
+.layer-skirt {
+  left: 903.80px;
+  top: 485.87px;
+  width: 221.36px;
+  height: 205.11px;
+  z-index: 3;
+}
+
+.layer-tie {
+  left: 891.58px;
+  top: 233.12px;
+  width: 131.0px;
+  height: 296.38px;
+  z-index: 4; /* Tie sits over shirt */
+}
+
+/* Interactive SVG Hit Areas (Exact Vector Contours from Figma) */
+.hit-area {
+  position: absolute;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.hit-area path {
+  fill: transparent;
+  pointer-events: all;
+}
+
+.hit-shirt {
+  left: 822.05px;
+  top: 168.62px;
+  width: 324.20px;
+  height: 473.97px;
+  z-index: 10;
+}
+
+.hit-skirt {
+  left: 903.80px;
+  top: 485.87px;
+  width: 221.36px;
+  height: 205.11px;
+  z-index: 11;
+}
+
+.hit-tie {
+  left: 891.58px;
+  top: 233.12px;
+  width: 131.0px;
+  height: 296.38px;
+  z-index: 12; /* Sits on top of shirt hit area */
+}
+
+/* Stickers and Badges */
+.sticker {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sticker-star {
+  left: 563.09px;
+  top: 49.70px;
+  width: 134.31px;
+  height: 134.54px;
+  z-index: 5;
+}
+
+.sticker-camera {
+  left: 546.50px;
+  top: 497.44px;
+  width: 314.57px;
+  height: 252.44px;
+  z-index: 5;
+}
+
+.badge-fabric {
+  left: 571.50px;
+  top: 500.44px;
+  width: 295.51px;
+  height: 62.99px;
+  z-index: 6;
+}
+
+.sticker-film {
+  left: 1154.19px;
+  top: 262.55px;
+  width: 217.23px;
+  height: 223.59px;
+  z-index: 5;
+}
+
+.sticker-heart {
+  left: 1262.81px;
+  top: 642.59px;
+  width: 108.62px;
+  height: 110.12px;
+  z-index: 5;
+}
+
+.badge-click-around {
+  left: 1161.42px;
+  top: 66.47px;
+  width: 183.81px;
+  height: 51.96px;
+  z-index: 6;
+}
+
+.arrow-curved {
+  left: 1151.46px;
+  top: 98.60px;
+  width: 124.74px;
+  height: 107.22px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Popups on Click */
+.popup-card {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  z-index: 30;
+}
+
+.popup-card.open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.popup-tie {
+  left: 558.64px;
+  top: 199.23px;
+  width: 418.97px;
+  height: 318.05px;
+}
+
+.popup-shirt {
+  left: 1038.28px;
+  top: 60.74px;
+  width: 347.25px;
+  height: 253.61px;
+}
+
+.popup-skirt {
+  left: 1070.55px;
+  top: 408.04px;
+  width: 252.12px;
+  height: 203.98px;
+}
+
+/* Clickable hotspots inside popup cards */
+.popup-link {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* Photography link inside tie popup */
+.popup-tie .link-item-1 {
+  left: 20px;
+  top: 55px;
+  width: 230px;
+  height: 34px;
+}
+
+/* Filmmaking link inside tie popup */
+.popup-tie .link-item-2 {
+  left: 20px;
+  top: 93px;
+  width: 230px;
+  height: 34px;
+}
+
+/* Music link inside shirt popup */
+.popup-shirt .link-item-1 {
+  left: 20px;
+  top: 62px;
+  width: 300px;
+  height: 34px;
+}
+
+/* Dance link inside shirt popup */
+.popup-shirt .link-item-2 {
+  left: 20px;
+  top: 100px;
+  width: 300px;
+  height: 34px;
+}
+
+/* Art link inside skirt popup */
+.popup-skirt .link-item-1 {
+  left: 20px;
+  top: 62px;
+  width: 200px;
+  height: 34px;
+}
+
+/* Community link inside skirt popup */
+.popup-skirt .link-item-2 {
+  left: 20px;
+  top: 100px;
+  width: 200px;
+  height: 34px;
+}
+

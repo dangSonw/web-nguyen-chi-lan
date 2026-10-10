@@ -1,0 +1,226 @@
+/* ==========================================================================
+   /DANCE&PERFORMANCE PAGE - EXACT FIGMA SPECIFICATION & RESPONSIVE FLUID DESIGN
+   ========================================================================== */
+
+/* Breadcrumb /dance&performance */
+.dance-page .breadcrumb {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.05vw, 22px);
+  line-height: clamp(21px, 1.45vw, 30px);
+  color: #9E9E9E;
+  margin-bottom: clamp(16px, 1.6vw, 30px);
+  user-select: none;
+}
+
+/* Title: Dance & Performance. with stylized drop-caps */
+.dance-page .page-title {
+  display: flex;
+  align-items: baseline;
+  color: #B97278;
+  margin-bottom: clamp(14px, 1.2vw, 24px);
+  user-select: none;
+}
+
+.dance-page .title-script {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(97.5px, 6.8vw, 150px);
+  line-height: 0.75;
+  font-weight: 400;
+  margin-right: 2px;
+}
+
+.dance-page .title-script-amp {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(97.5px, 6.8vw, 150px);
+  line-height: 0.75;
+  font-weight: 400;
+  margin: 0 clamp(2px, 0.3vw, 6px);
+}
+
+.dance-page .title-serif {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(45px, 3.15vw, 68px);
+  line-height: clamp(43.5px, 3.05vw, 66px);
+}
+
+/* Intro description */
+.dance-page .intro-text {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(13.5px, 0.95vw, 19px);
+  line-height: clamp(16.5px, 1.2vw, 25px);
+  color: #585858;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: clamp(35px, 3.5vw, 55px);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION BLOCKS
+   -------------------------------------------------------------------------- */
+.dance-section {
+  width: 100%;
+  max-width: 100%;
+}
+
+.dance-section .section-title {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(18px, 1.25vw, 24px);
+  line-height: 1.2;
+  color: #585858;
+  margin-bottom: clamp(8px, 0.8vw, 14px);
+}
+
+.dance-section .section-desc {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(13.5px, 0.95vw, 18px);
+  line-height: clamp(16.5px, 1.2vw, 24px);
+  color: #585858;
+  width: 100%;
+  max-width: clamp(420px, 40vw, 600px);
+}
+
+/* Section 1: Cheer Ams */
+#cheer-ams .section-desc {
+  margin-bottom: clamp(24px, 2.5vw, 42px);
+}
+
+/* Section 2: Ams Ambassador */
+#ams-ambassador {
+  margin-top: clamp(45px, 5vw, 75px);
+}
+
+#ams-ambassador .section-desc {
+  margin-bottom: clamp(24px, 2.5vw, 38px);
+}
+
+/* --------------------------------------------------------------------------
+   MEDIA LAYOUTS & GRIDS
+   -------------------------------------------------------------------------- */
+/* Row 1: Cheer Photos (2 items) */
+.row-cheer-photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(6px, 0.8vw, 12px);
+  width: 100%;
+  max-width: 100%;
+}
+
+.row-cheer-photos > * {
+  min-width: 0;
+}
+
+.row-cheer-photos img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 533 / 355;
+  object-fit: cover;
+  display: block;
+}
+
+/* Cheer Video Wrapper */
+.cheer-video-wrapper {
+  margin-top: clamp(20px, 2vw, 32px);
+  width: 100%;
+  max-width: 100%;
+}
+
+.cheer-video-wrapper .video-box {
+  width: 100%;
+  aspect-ratio: 1072.5 / 713.51;
+}
+
+/* Row 2: Ambassador Photos (3 items - Exact Figma Proportions) */
+.row-ambassador-photos {
+  display: grid;
+  grid-template-columns: 256.5fr 577fr 577.2fr;
+  gap: clamp(6px, 0.75vw, 12px);
+  width: 100%;
+  max-width: 100%;
+  align-items: stretch;
+}
+
+.row-ambassador-photos > * {
+  min-width: 0;
+}
+
+.row-ambassador-photos .photo-ambassador-1 {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 256.5 / 384.7;
+  object-fit: cover;
+  display: block;
+}
+
+.row-ambassador-photos .photo-ambassador-2 {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 577 / 384.7;
+  object-fit: cover;
+  display: block;
+}
+
+.row-ambassador-photos .photo-ambassador-3 {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 577.2 / 384.7;
+  object-fit: cover;
+  display: block;
+}
+
+/* Captions: Centered */
+.caption-text {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(12px, 0.85vw, 17px);
+  line-height: clamp(16.5px, 1.15vw, 23px);
+  color: #CD6E49;
+  text-align: center;
+  margin-top: clamp(7.5px, 0.6vw, 12px);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (Matching original Figma & Fluid rules)
+   -------------------------------------------------------------------------- */
+@media (max-width: 880px) {
+  .dance-section .section-desc {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .row-cheer-photos {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .row-ambassador-photos {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .row-ambassador-photos .photo-ambassador-1 {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .dance-page .title-script,
+  .dance-page .title-script-amp {
+    font-size: 64px;
+  }
+
+  .dance-page .title-serif {
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  .dance-section .section-title {
+    font-size: 16px;
+  }
+}
+

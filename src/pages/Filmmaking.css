@@ -1,0 +1,155 @@
+/* ==========================================================================
+   /FILMMAKING PAGE - EXACT FIGMA SPECIFICATION & RESPONSIVE FLUID DESIGN
+   ========================================================================== */
+
+/* Breadcrumb /filmmaking */
+.filmmaking-page .breadcrumb {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.05vw, 22px);
+  line-height: clamp(21px, 1.45vw, 30px);
+  color: #9E9E9E;
+  margin-bottom: clamp(16px, 1.6vw, 30px);
+  user-select: none;
+}
+
+/* Title: Filmmaking. */
+.filmmaking-page .page-title {
+  display: flex;
+  align-items: baseline;
+  color: #B97278;
+  margin-bottom: clamp(14px, 1.2vw, 24px);
+  user-select: none;
+}
+
+.filmmaking-page .title-initial {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(97.5px, 6.8vw, 150px);
+  line-height: 0.75;
+  font-weight: 400;
+  margin-right: 2px;
+}
+
+.filmmaking-page .title-rest {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(45px, 3.15vw, 68px);
+  line-height: clamp(43.5px, 3.05vw, 66px);
+}
+
+/* Intro description */
+.filmmaking-page .intro-text {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(13.5px, 0.95vw, 19px);
+  line-height: clamp(16.5px, 1.2vw, 25px);
+  color: #585858;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: clamp(35px, 3.5vw, 55px);
+}
+
+/* --------------------------------------------------------------------------
+   FILM SHOWCASE ROW (2-Column on Desktop, Stack on Tablet/Mobile)
+   -------------------------------------------------------------------------- */
+.film-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  gap: clamp(16px, 1.4vw, 32px);
+  margin-bottom: clamp(38px, 4vw, 65px);
+}
+
+.film-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Left Info Column */
+.film-info-col {
+  width: clamp(202.5px, 14vw, 280px);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.film-title {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(18px, 1.25vw, 24px);
+  line-height: 1.2;
+  color: #585858;
+  margin-bottom: clamp(12px, 1.1vw, 18px);
+}
+
+.film-meta-item {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-size: clamp(13.5px, 0.95vw, 18px);
+  line-height: 1.35;
+  color: #585858;
+  margin-bottom: 3px;
+}
+
+.film-meta-label {
+  font-weight: 600;
+}
+
+.film-meta-value {
+  font-weight: 400;
+}
+
+.film-summary {
+  font-family: 'Libre Caslon Text', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(13.5px, 0.95vw, 18px);
+  line-height: clamp(16.5px, 1.2vw, 24px);
+  color: #585858;
+  margin-top: clamp(12px, 1vw, 18px);
+}
+
+/* Right Video Column */
+.film-video-box-col {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+}
+
+.film-video-box-col .video-box {
+  width: 100%;
+  aspect-ratio: 855 / 475;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (Matching original Figma & Agents rule)
+   -------------------------------------------------------------------------- */
+@media (max-width: 800px) {
+  .film-row {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .film-info-col {
+    width: 100%;
+  }
+
+  .film-video-box-col .video-box {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 600px) {
+  .filmmaking-page .title-initial {
+    font-size: 64px;
+  }
+
+  .filmmaking-page .title-rest {
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  .film-title {
+    font-size: 16px;
+  }
+}
+
