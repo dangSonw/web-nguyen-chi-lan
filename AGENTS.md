@@ -12,7 +12,8 @@
 6. [Khai Thác & Xử Lý Assets (Tránh Cạm Bẫy Cắt Cúp)](#6-khai-thác--xử-lý-assets-tránh-cạm-bẫy-cắt-cúp)
 7. [Typography, Màu Sắc & Ngôn Ngữ Tiếng Việt](#7-typography-màu-sắc--ngôn-ngữ-tiếng-việt)
 8. [Tương Tác, Hiệu Ứng Chuyển Trang & Video Player](#8-tương-tác-hiệu-ứng-chuyển-trang--video-player)
-9. [Checklist Kiểm Thử Trước Khi Bàn Giao](#9-checklist-kiểm-thử-trước-khi-bàn-giao)
+9. [Quy Trình Bắt Buộc: Kiểm Thử Qua Dev Tools, Đọc Log & Quan Sát Đa Màn Hình](#9-quy-trình-bắt-buộc-kiểm-thử-qua-dev-tools-đọc-log--quan-sát-đa-màn-hình)
+10. [Checklist Kiểm Thử Trước Khi Bàn Giao](#10-checklist-kiểm-thử-trước-khi-bàn-giao)
 
 ---
 
@@ -29,6 +30,8 @@
    - Khi người dùng tải lại trang (F5) hoặc mở tab mới trực tiếp vào URL nhánh con, ứng dụng luôn tự động điều hướng về lại Trang Chủ (`/`) để giữ nguyên trải nghiệm nghệ thuật mở đầu.
 4. **Không để tràn viền màn hình (Zero Horizontal Scroll)**:
    - Tuyệt đối không xuất hiện thanh cuộn ngang ở bất kỳ dải màn hình nào từ Mobile ($375\text{px}$) đến màn hình siêu rộng 4K ($2560\text{px}+$ và $3840\text{px}$).
+5. **Kiểm thử chủ động sau mỗi thay đổi (Test-Driven Delivery)**:
+   - Sau bất kỳ lần chỉnh sửa code, giao diện hoặc thêm tính năng nào, Agent **bắt buộc phải chạy quy trình kiểm thử qua Dev Tools / MCP console log, quan sát hiển thị đa kích thước và thử toàn bộ tương tác** trước khi thông báo bàn giao cho người dùng.
 
 ---
 
@@ -38,12 +41,12 @@
 project-root/
 │
 ├── package.json               # Dependencies: react, react-dom, react-router-dom, framer-motion, vite
-├── vite.config.js             # Cấu hình cổng (ví dụ: port 5177), plugin React & static preview
+├── vite.config.js             # Cấu hình cổng 5177 (server & preview), plugin React
 ├── index.html                 # Entrypoint duy nhất của trình duyệt: chứa <div id="root"> & nạp main.jsx
 ├── AGENTS.md                  # Cẩm nang quy chuẩn kỹ thuật cho Agent
 │
 ├── public/                    # Kho chứa tài nguyên tĩnh thuần túy (Static Assets)
-│   └── assets/                # Không chứa bất kỳ file HTML nào ở đây
+│   └── assets/                # Tuyệt đối không chứa file HTML nào ở đây
 │       ├── home/              # Vector, cutout trang chủ
 │       ├── music/             # Poster, ảnh biểu diễn
 │       ├── photography/       # Ảnh chụp các album
@@ -99,7 +102,7 @@ flowchart TD
     A["1. Phân tích Node Figma"] --> B["2. Tạo file Component & CSS riêng"]
     B --> C["3. Nhúng SubpageLayout & Router"]
     C --> D["4. Tích hợp tương tác & State"]
-    D --> E["5. Kiểm thử 2 chiều: Co nhỏ Mobile & Phóng to 4K"]
+    D --> E["5. Kiểm thử Dev Tools, Log & Đa Viewport"]
     E --> F["6. Build test 'npm run build' & Commit Git"]
 ```
 
@@ -297,7 +300,64 @@ function PageTransition({ children }) {
 
 ---
 
-## 9. CHECKLIST KIỂM THỬ TRƯỚC KHI BÀN GIAO
+## 9. QUY TRÌNH BẮT BUỘC: KIỂM THỬ QUA DEV TOOLS, ĐỌC LOG & QUAN SÁT ĐA MÀN HÌNH
+
+> [!IMPORTANT]
+> **QUY TRÌNH BẮT BUỘC SAU MỖI LẦN CẬP NHẬT**:
+> Bất cứ khi nào Agent thay đổi code, thêm trang mới hoặc sửa đổi CSS/giao diện/tính năng, Agent **KHÔNG ĐƯỢC PHÉP** bàn giao ngay cho người dùng mà phải tự động thực hiện đủ 4 bước kiểm thử sau:
+
+```mermaid
+flowchart LR
+    T1["1. Đọc Console Log & Network"] --> T2["2. Quan sát 5 Dải Viewport"]
+    T2 --> T3["3. Thử Nghiệm Tương Tác"]
+    T3 --> T4["4. Biên Dịch Build & Commit"]
+```
+
+### 9.1. Đọc Console Log & Kiểm tra Lỗi Runtime
+Sử dụng công cụ DevTools / MCP logs (hoặc script phân tích log) để kiểm tra:
+1. **0 Lỗi Console (`console.error`)**: Không có ngoại lệ JavaScript, unhandled promise rejections, hoặc cảnh báo React đỏ (như thiếu `key` prop, sai tên thuộc tính DOM, React render loops).
+2. **0 Cảnh báo 404 Tài Nguyên**: Toàn bộ ảnh trong `/assets/`, video poster, vector SVG và font chữ đều phải trả về mã `200 OK`.
+3. **Theo dõi Hot Module Replacement (HMR)**: Kiểm tra log của Vite (`[vite] (client) hmr update ...`) để đảm bảo module cập nhật trơn tru mà không làm crash trình duyệt.
+
+### 9.2. Kiểm thử Quan sát Đa Màn hình (Multi-Viewport Observation)
+Thực hiện quan sát trực quan hoặc kiểm tra thuộc tính computed layout tại **5 kích thước chuẩn**:
+- **Dải 1: Mobile Siêu Nhỏ ($375\text{px} - 420\text{px}$)**:
+  - Khối nội dung chuyển sang xếp dọc (column layout).
+  - Không có bất kỳ thành phần nào bị tràn ngang màn hình (`document.documentElement.scrollWidth === window.innerWidth`).
+  - Chữ và nút bấm giữ nguyên kích thước bấm chạm dễ dàng ($\ge 40\text{px}$).
+- **Dải 2: Tablet ($768\text{px} - 880\text{px}$)**:
+  - Sidebar chuyển lên hàng ngang trên đầu (`flex-direction: row; flex-wrap: wrap`).
+  - Khối nội dung chính mở rộng $100\%$ chiều ngang.
+- **Dải 3: Laptop Chuẩn ($1200\text{px} - 1440\text{px}$)**:
+  - Khớp 100% tọa độ và tỷ lệ gốc của Figma.
+  - Sidebar cố định $180\text{px}$ bên trái.
+- **Dải 4: Màn hình Full HD ($1920\text{px}$)**:
+  - Khối canvas tự động mở rộng theo `clamp()`, font chữ và padding tăng tỉ lệ tương xứng.
+- **Dải 5: Màn hình Siêu Rộng 2K & 4K ($2560\text{px} - 3840\text{px}$)**:
+  - Canvas co giãn tối đa đến ngưỡng an toàn ($2560\text{px}$), căn giữa trang thanh lịch.
+  - Tuyệt đối không xuất hiện hai khoảng viền trống thừa dị thường ở hai bên.
+
+### 9.3. Thử nghiệm Tương tác Người dùng (Interactive Testing)
+Bắt buộc kích hoạt và xác nhận các tương tác sau hoạt động trơn tru:
+1. **Trình phát Video (`VideoBox`)**: Click vào thumbnail xem video có chuyển sang `<iframe>` YouTube phát mượt mà không bị reload hay giật màn hình.
+2. **Carousel & Album ảnh**:
+   - Click nút mũi tên trái / phải trên màn hình.
+   - Bấm phím mũi tên `ArrowLeft` / `ArrowRight` trên bàn phím.
+   - Thử vòng lặp vô hạn (từ ảnh cuối quay về ảnh đầu và ngược lại).
+3. **Tabs & Capsule Buttons**: Click chuyển giữa các tab (ví dụ: `photoshoot 1` $\leftrightarrow$ `photoshoot 2` trong Portrait) xem ảnh và trạng thái active đổi ngay tức thì.
+4. **Hotspots & Popups**: Click vào các điểm nhấn Áo / Váy / Cà vạt trên Trang Chủ xem popup có mở đúng vị trí và đóng lại khi bấm ra ngoài không.
+5. **Quy tắc F5 / Reload**: Thử reload tại URL trang con xem có tự động điều hướng êm ái về Trang Chủ (`/`) theo đúng quy chuẩn không.
+
+### 9.4. Biên dịch thử nghiệm (Production Build)
+Chạy lệnh kiểm tra độc lập:
+```bash
+npm run build
+```
+Kết quả phải đạt **`✓ built in ...s`** với 0 lỗi cú pháp và 0 lỗi đóng gói trước khi bàn giao!
+
+---
+
+## 10. CHECKLIST KIỂM THỬ TRƯỚC KHI BÀN GIAO
 
 Mỗi khi phát triển hoặc cập nhật bất kỳ trang nào, Agent **BẮT BUỘC** phải tự kiểm tra:
 
@@ -308,6 +368,7 @@ Mỗi khi phát triển hoặc cập nhật bất kỳ trang nào, Agent **BẮT
   - `768px Tablet`: Menu chuyển thành hàng ngang ở trên cùng, các khối co giãn mượt mà.
   - `375px - 420px Mobile`: Các khối xếp dọc, hình ảnh và video không bị tràn ngang.
 - [ ] **Không xuất hiện thanh cuộn ngang (Zero Horizontal Scroll)** ở tất cả các kích thước.
+- [ ] **Console Log sạch sẽ**: 0 lỗi `console.error`, 0 lỗi tài nguyên 404.
 - [ ] **Quy tắc F5 / Reload**: Tải lại trang ở bất kỳ nhánh con nào cũng tự động đưa về Home `/`.
 - [ ] **Chuyển trang 0ms**: Menu sidebar và các link thẻ card chuyển trang êm ái với hiệu ứng cross-fade.
 - [ ] **Tương tác**: Các video click-to-play phát chuẩn, carousel ảnh lật bằng phím bấm và nút chuột mượt mà.
