@@ -93,7 +93,7 @@ export default function Portrait() {
           >
             <svg
               className="frame-arrow-svg"
-              viewBox="0 0 193 952"
+              viewBox="60 445 70 62"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -125,7 +125,7 @@ export default function Portrait() {
           >
             <svg
               className="frame-arrow-svg"
-              viewBox="0 0 193 952"
+              viewBox="60 445 70 62"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >

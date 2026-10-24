@@ -80,12 +80,13 @@
   justify-content: center;
   background-color: #B97278;
   border-radius: 100px;
-  height: clamp(30px, 2.1vw, 42px);
-  padding: 0 clamp(16px, 1.5vw, 28px);
+  min-height: clamp(30px, 2.1vw, 42px);
+  padding: 6px clamp(16px, 1.5vw, 28px);
   font-family: 'Libre Caslon Text', Georgia, serif;
   font-weight: 600;
   font-size: clamp(13.5px, 1.05vw, 18px);
-  line-height: 1;
+  line-height: 1.35;
+  text-align: center;
   color: #FFFFFF;
   user-select: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -254,9 +255,9 @@
 /* Pop-out Cutout of 2 girls */
 .art-girls-cutout {
   position: absolute;
-  left: 17.05%;
-  top: 8.62%;
-  width: 21.12%;
+  left: 55.05%;
+  top: 9%;
+  width: 68.2%;
   height: auto;
   aspect-ratio: 226 / 444;
   z-index: 10;

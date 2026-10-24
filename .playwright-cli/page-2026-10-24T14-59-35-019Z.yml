@@ -1,0 +1,21 @@
+- main [ref=e5]:
+  - heading "hi there! my name is" [level=1] [ref=e6]
+  - img "Chi Lan" [ref=e7]
+  - paragraph [ref=e9]: Hi there! My name is Chi Lan. Part Potterhead, part camera-wielder, part professional yapper. I love performing, chasing stories, and collecting hobbies like they’re Pokemon. Currently taking life one overly ambitious project at a time. Welcome to my little corner.
+  - link "My resumes" [ref=e10] [cursor=pointer]:
+    - /url: https://docs.google.com/document/d/19u_DMtezgAFT4hq4PKqqZCwPXKviziJcQGUj6jCzynI/edit?pli=1&tab=t.0
+    - generic [aria-hidden] [ref=e12]: My resumes
+  - img "Chi Lan Portrait"
+  - img "Shirt Highlight"
+  - img "Skirt Highlight"
+  - img "Tie Highlight"
+  - img "Shirt Hotspot" [ref=e13] [cursor=pointer]
+  - img "Skirt Hotspot" [ref=e15] [cursor=pointer]
+  - img "Tie Hotspot" [ref=e17] [cursor=pointer]
+  - img "Star Sticker"
+  - img "Canon Camera"
+  - img "A piece of fabric unlocks a piece of who I am"
+  - img "Kodak Film"
+  - img "Heart Lighter"
+  - img "Click around to see more!!"
+  - img "Curved Arrow"

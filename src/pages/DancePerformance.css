@@ -16,10 +16,18 @@
 /* Title: Dance & Performance. with stylized drop-caps */
 .dance-page .page-title {
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.4em;
   align-items: baseline;
   color: #B97278;
   margin-bottom: clamp(14px, 1.2vw, 24px);
   user-select: none;
+}
+
+.dance-page .title-word {
+  display: inline-flex;
+  align-items: baseline;
+  flex-shrink: 0;
 }
 
 .dance-page .title-script {

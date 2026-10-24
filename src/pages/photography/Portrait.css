@@ -67,6 +67,7 @@
 .portrait-page .tab-btn {
   width: clamp(118.5px, 8.2vw, 158px);
   height: clamp(40px, 2.78vw, 53px);
+  min-height: 44px;
   border-radius: 100px;
   border: none;
   outline: none;
@@ -163,8 +164,8 @@
 }
 
 .portrait-page .frame-arrow-svg {
-  width: 100%;
-  height: 100%;
+  width: 28px;
+  height: 28px;
   display: block;
 }
 
@@ -190,6 +191,7 @@
     left: auto;
     top: auto;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     width: 100%;
     margin-bottom: 8px;
@@ -226,15 +228,24 @@
   }
 
   .portrait-page .nav-arrow-zone {
-    width: 40px;
+    width: 44px;
+    opacity: 1;
   }
 
   .portrait-page .nav-arrow-left {
-    left: max(0px, calc(50% - 145px - 40px));
+    left: max(0px, calc(50% - 145px));
   }
 
   .portrait-page .nav-arrow-right {
-    right: max(0px, calc(50% - 145px - 40px));
+    right: max(0px, calc(50% - 145px));
+  }
+
+  .portrait-page .frame-arrow-svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.65));
+  }
+
+  .portrait-page .frame-arrow-svg path {
+    fill: #fff;
   }
 }
 

@@ -20,6 +20,49 @@
   margin-left: clamp(25px, 2.6vw, 65px);
 }
 
+/* Keep readable text and usable controls at every canvas scale. */
+.subpage-canvas .main-content .intro-text,
+.subpage-canvas .main-content .section-desc,
+.subpage-canvas .main-content .project-desc,
+.subpage-canvas .main-content .film-summary,
+.subpage-canvas .main-content .film-meta-item,
+.subpage-canvas .main-content .accent-quote {
+  font-size: clamp(16px, 0.95vw, 19px);
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.subpage-canvas .main-content .video-caption,
+.subpage-canvas .main-content .caption-text,
+.subpage-canvas .main-content .art-caption-left,
+.subpage-canvas .main-content .art-caption-middle,
+.subpage-canvas .main-content .art-caption-right {
+  font-size: clamp(14px, 0.85vw, 17px);
+  line-height: 1.4;
+}
+
+.subpage-canvas .back-btn {
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+
+.subpage-canvas .breadcrumb-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.subpage-canvas a:focus-visible,
+.subpage-canvas button:focus-visible {
+  outline: 3px solid #A53C5E;
+  outline-offset: 3px;
+}
+
+.subpage-canvas .nav-edge-arrow:focus-visible,
+.subpage-canvas .video-launch:focus-visible {
+  outline-offset: -4px;
+}
+
 @media (max-width: 880px) {
   .subpage-canvas {
     flex-direction: column;
@@ -30,5 +73,26 @@
     margin-left: 0;
     width: 100%;
     max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .subpage-canvas .main-content .title-initial {
+    font-size: 64px;
+  }
+
+  .subpage-canvas .main-content .title-rest {
+    font-size: clamp(26px, 7vw, 38px);
+    line-height: 1.1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .subpage-canvas *,
+  .subpage-canvas *::before,
+  .subpage-canvas *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

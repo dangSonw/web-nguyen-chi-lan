@@ -72,9 +72,80 @@
   z-index: 2;
 }
 
+.resume-link {
+  --resume-ink: #A53C5E;
+  --resume-paper: #FDF6E6;
+  position: absolute;
+  left: 75px;
+  top: 444px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 38px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--resume-paper);
+  color: var(--resume-ink);
+  font: 700 20px/1.2 'Libre Caslon Text', Georgia, serif;
+  text-decoration: none;
+  white-space: nowrap;
+  animation: resume-color-swap 6s ease-in-out infinite;
+}
+
+.resume-link::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  min-width: calc(44px / var(--home-scale, 1));
+  min-height: calc(44px / var(--home-scale, 1));
+  transform: translate(-50%, -50%);
+}
+
+.resume-link:focus-visible {
+  animation: none;
+}
+
+.viewport-canvas[data-motion-paused='true'] .resume-link {
+  animation-play-state: paused;
+}
+
+.resume-link:focus-visible {
+  outline: 3px solid var(--resume-ink);
+  outline-offset: 5px;
+}
+
+@keyframes resume-color-swap {
+  0%, 100% {
+    background-color: var(--resume-paper);
+    color: var(--resume-ink);
+    opacity: 1;
+  }
+  25%, 75% { opacity: 0.6; }
+  50% {
+    background-color: var(--resume-ink);
+    color: var(--resume-paper);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume-link { animation: none; }
+}
+
 /* --------------------------------------------------------------------------
    RIGHT SECTION: Portrait & Components
    -------------------------------------------------------------------------- */
+.home-portrait-window,
+.home-portrait-composition {
+  position: absolute;
+  inset: 0;
+}
+
 .circle-bg {
   position: absolute;
   left: 697.41px;
@@ -326,5 +397,79 @@
   top: 100px;
   width: 200px;
   height: 34px;
+}
+
+/* Keep the illustration's internal proportions while allowing the introduction
+   and resume to remain readable on a narrow or portrait viewport. */
+@media (max-width: 900px) {
+  .home-page-container {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    align-items: flex-start;
+  }
+
+  .viewport-canvas {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding: 32px 24px 16px;
+    overflow: hidden;
+  }
+
+  .heading-intro,
+  .name-hero,
+  .bio-text,
+  .resume-link {
+    position: relative;
+    left: auto;
+    top: auto;
+    flex-shrink: 0;
+  }
+
+  .heading-intro {
+    width: 100%;
+    font-size: clamp(36px, 8vw, 60px);
+    line-height: 1.05;
+  }
+
+  .name-hero {
+    width: min(100%, 466.1px);
+    height: auto;
+    margin: 8px 0 4px;
+  }
+
+  .bio-text {
+    width: min(100%, 38ch);
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .resume-link {
+    margin-top: 26px;
+    margin-bottom: 16px;
+  }
+
+  .home-portrait-window {
+    position: relative;
+    inset: auto;
+    flex-shrink: 0;
+    width: calc(100% + 48px);
+    height: calc(810px * var(--portrait-scale, 0.45));
+    margin-left: -24px;
+  }
+
+  .home-portrait-composition {
+    inset: auto;
+    top: 0;
+    left: calc(-530px * var(--portrait-scale, 0.45));
+    width: 1440px;
+    height: 810px;
+    transform: scale(var(--portrait-scale, 0.45));
+    transform-origin: top left;
+  }
 }
 

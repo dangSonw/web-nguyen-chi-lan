@@ -30,8 +30,6 @@ export default function VideoBox({
       <div
         className="video-box"
         style={boxStyle}
-        onClick={() => setIsPlaying(true)}
-        title="Click to play video"
       >
         {isPlaying ? (
           <iframe
@@ -44,17 +42,22 @@ export default function VideoBox({
             allowFullScreen
           />
         ) : (
-          <>
+          <button
+            type="button"
+            className="video-launch"
+            onClick={() => setIsPlaying(true)}
+            aria-label={`Play ${caption || alt}`}
+          >
             <img src={posterSrc} alt={alt} className="video-poster" />
-            <div className="play-button">
+            <span className="play-button" aria-hidden="true">
               <svg className={iconClass} viewBox="0 0 52 60" fill="none">
                 <path
                   d="M51.1826 29.55L0.000241357 59.1002L0.000243941 -0.000110956L51.1826 29.55Z"
                   fill="white"
                 />
               </svg>
-            </div>
-          </>
+            </span>
+          </button>
         )}
       </div>
       {caption && <div className="video-caption">{caption}</div>}

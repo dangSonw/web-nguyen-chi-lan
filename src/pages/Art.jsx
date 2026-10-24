@@ -126,12 +126,12 @@ export default function Art() {
                 alt="Balloon flowers background"
                 className="art-balloon-bg"
               />
+              <img
+                src="/assets/art/artwork_girls_cutout.png"
+                alt="Two girls with balloons pop-out cutout"
+                className="art-girls-cutout"
+              />
             </div>
-            <img
-              src="/assets/art/artwork_girls_cutout.png"
-              alt="Two girls with balloons pop-out cutout"
-              className="art-girls-cutout"
-            />
             <div className="art-caption-left">Balloon-twisting</div>
 
             {/* Middle Artwork: Seagul Sketch */}

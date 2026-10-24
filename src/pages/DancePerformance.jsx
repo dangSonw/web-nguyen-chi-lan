@@ -12,11 +12,9 @@ export default function DancePerformance() {
 
         {/* Page Title */}
         <h1 className="page-title">
-          <span className="title-script">D</span>
-          <span className="title-serif">ance</span>
+          <span className="title-word"><span className="title-script">D</span><span className="title-serif">ance</span></span>
           <span className="title-script-amp">&amp;</span>
-          <span className="title-script">P</span>
-          <span className="title-serif">erformance.</span>
+          <span className="title-word"><span className="title-script">P</span><span className="title-serif">erformance.</span></span>
         </h1>
 
         {/* Intro Paragraph */}

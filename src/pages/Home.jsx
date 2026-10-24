@@ -14,8 +14,15 @@ export default function Home() {
       if (!canvas) return;
       const winW = window.innerWidth;
       const winH = window.innerHeight;
+      if (winW <= 900) {
+        canvas.style.setProperty('--home-scale', 1);
+        canvas.style.setProperty('--portrait-scale', winW / 875);
+        canvas.style.transform = 'none';
+        return;
+      }
       const scale = Math.min(winW / 1440, winH / 810);
 
+      canvas.style.setProperty('--home-scale', scale);
       canvas.style.transform = `scale(${scale})`;
       canvas.style.transformOrigin = 'center center';
     }
@@ -26,6 +33,25 @@ export default function Home() {
     return () => {
       window.removeEventListener('resize', scaleHomepage);
       document.body.style.overflow = '';
+    };
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    let visible = true;
+    const updateVisibility = () => {
+      canvas.dataset.motionPaused = String(document.hidden || !visible);
+    };
+    const observer = 'IntersectionObserver' in window ? new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      updateVisibility();
+    }) : null;
+    observer?.observe(canvas.querySelector('.resume-link'));
+    updateVisibility();
+    document.addEventListener('visibilitychange', updateVisibility);
+    return () => {
+      observer?.disconnect();
+      document.removeEventListener('visibilitychange', updateVisibility);
     };
   }, []);
 
@@ -72,10 +98,21 @@ export default function Home() {
         Hi there! My name is Chi Lan. Part Potterhead, part camera-wielder, part professional yapper. I love performing, chasing stories, and collecting hobbies like they’re Pokemon. Currently taking life one overly ambitious project at a time. Welcome to my little corner.
       </p>
 
+      <a
+        className="resume-link"
+        href="https://docs.google.com/document/d/19u_DMtezgAFT4hq4PKqqZCwPXKviziJcQGUj6jCzynI/edit?pli=1&tab=t.0"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span className="resume-link-label">My Resumé</span>
+      </a>
+
       {/* ======================================================================
            2. RIGHT SECTION: Background & Portrait
            ====================================================================== */}
       {/* Blue Circle */}
+      <div className="home-portrait-window">
+      <div className="home-portrait-composition">
       <div className="circle-bg"></div>
 
       {/* Base Portrait of Chi Lan */}
@@ -187,6 +224,8 @@ export default function Home() {
         />
         <Link to="/art" className="popup-link link-item-1" title="Go to Art" />
         <Link to="/community" className="popup-link link-item-2" title="Go to Community" />
+      </div>
+      </div>
       </div>
     </main>
   </div>
